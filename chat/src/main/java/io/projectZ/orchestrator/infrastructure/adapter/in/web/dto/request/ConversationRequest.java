@@ -9,12 +9,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
 public class ConversationRequest {
-    private String jid;
-    private String targetJid;
+    private List<String> participants;
     private String lastMessage;
 }
 

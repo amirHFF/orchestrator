@@ -32,27 +32,35 @@ public class ConversationRepository implements ConversationPort {
     }
 
     @Override
+    public Conversation getById(long id) {
+        ConversationEntity conversationEntity = repository.findById(id).orElse(null);
+        if (conversationEntity !=null)
+            return ConversationMapper.getInstance.entityToModel(conversationEntity);
+        else return null;
+    }
+
+    @Override
     public void save(Conversation conversation) {
-        logger.info("{} conversation saving ..." , conversation.getJid());
+        logger.info("conversation saving ...");
         ConversationEntity entity = ConversationMapper.getInstance.modelToEntity(conversation);
         repository.save(entity);
-        logger.info("{} conversation saved .", conversation.getJid());
+        logger.info("conversation saved .");
 
     }
 
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     @Override
     public void update(Conversation conversation) {
-        logger.info("{} conversation updating ..." , conversation.getJid());
+        logger.info(" conversation updating ...");
         ConversationEntity entity = ConversationMapper.getInstance.modelToEntity(conversation);
         repository.save(entity);
-        logger.info("{} conversation updating .", conversation.getJid());
+        logger.info("conversation updating .");
 
     }
 
     @Override
-    public List<Conversation> getConversationsByJid(String jid) {
-        List<ConversationEntity> dbResult = repository.findAllByJid(jid);
+    public List<Conversation> getConversations(String jid , String targetJid) {
+        List<ConversationEntity> dbResult = repository.findAllConversationsBySingleParticipant(jid);
         if (dbResult.isEmpty()){
             return new ArrayList<>();
         }
@@ -61,7 +69,12 @@ public class ConversationRepository implements ConversationPort {
     }
 
     @Override
-    public Conversation getConversationByJids(String jid, String targetJid) {
-        return null;
+    public List<Conversation> getConversationByParticipants(List<String> participants) {
+        List<ConversationEntity> dbResult = repository.findAllConversationsByAllParticipant(participants);
+        if (dbResult.isEmpty()){
+            return new ArrayList<>();
+        }
+        logger.info("{} in total fetched" , dbResult.size());
+        return dbResult.stream().map(ConversationMapper.getInstance::entityToModel).collect(Collectors.toList());
     }
 }

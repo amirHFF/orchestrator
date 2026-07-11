@@ -9,6 +9,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -18,10 +21,8 @@ public class ConversationEntity extends BaseEntity {
     @SequenceGenerator(name = "conversationSeq" , sequenceName = "CONVERSATION_SEQ" , allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "conversationSeq")
     private long id;
-    private String jid;
-    @Column(name = "TARGET_JID" , nullable = false , unique = true )
-    private String targetJid;
-
+    @Column(columnDefinition = "text[]")
+    private List<String> participants = new ArrayList<>();
     @Column(name = "LAST_MESSAGE" )
     private String lastMessage;
 

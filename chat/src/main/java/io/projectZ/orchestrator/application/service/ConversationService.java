@@ -7,6 +7,8 @@ package io.projectZ.orchestrator.application.service;
 
 import io.projectZ.orchestrator.application.port.ConversationPort;
 import io.projectZ.orchestrator.entity.Conversation;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 
 import java.util.List;
 import java.util.Set;

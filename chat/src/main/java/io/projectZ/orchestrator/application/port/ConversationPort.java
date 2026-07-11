@@ -11,9 +11,10 @@ import java.util.List;
 import java.util.Set;
 
 public interface ConversationPort {
+    Conversation getById(long id);
     void save(Conversation conversation);
     void update(Conversation conversation);
-    List<Conversation> getConversationsByJid(String jid);
-    Conversation getConversationByJids(String jid, String targetJid);
+    List<Conversation> getConversations(String jid , String targetJid);
+    List<Conversation> getConversationByParticipants(List<String> participants);
 
 }

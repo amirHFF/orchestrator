@@ -10,8 +10,12 @@ import io.projectZ.orchestrator.entity.Conversation;
 import io.projectZ.orchestrator.infrastructure.adapter.in.web.dto.request.ConversationRequest;
 import io.projectZ.orchestrator.infrastructure.adapter.in.web.dto.response.ConversationResponse;
 import io.projectZ.orchestrator.infrastructure.adapter.in.web.mapper.ConversationControllerMapper;
+import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.KeycloakAdminClient;
+import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.OpenFireRestClient;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,9 +38,9 @@ public class ConversationController {
         return ResponseEntity.ok().body(responseSet.stream().map(ConversationControllerMapper.getInstance::ModelToResponse).collect(Collectors.toList()));
     }
     @PutMapping
-    public ResponseEntity<Set<ConversationResponse>> save(@RequestBody ConversationRequest conversationRequest) {
-        conversationService.saveOrUpdate(ConversationControllerMapper.getInstance.requestToModel(conversationRequest));
-        return ResponseEntity.status(201).build();
+    public ResponseEntity<Boolean> save(@RequestBody ConversationRequest conversationRequest ) {
+        conversationService.saveOrUpdate(ConversationControllerMapper.getInstance.requestToModel(conversationRequest) );
+        return ResponseEntity.status(201).body(true);
     }
 }
 

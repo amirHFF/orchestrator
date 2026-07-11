@@ -10,19 +10,16 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.List;
 
 @Getter
 @Setter
 public class Conversation{
 
   private long id;
-  private String jid;
-  private String targetJid;
-
+  private List<String> participants;
   private String lastMessage;
   private LocalDateTime lastMessageTime;
-
-
 
 }
 
