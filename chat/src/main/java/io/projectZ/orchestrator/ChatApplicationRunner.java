@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication(scanBasePackages = "io.projectZ.orchestrator*")
-public class applicationRunner extends SpringBootServletInitializer {
+public class ChatApplicationRunner extends SpringBootServletInitializer {
     public static void main(String[] args) {
-        SpringApplication.run(applicationRunner.class , args);
+        SpringApplication.run(ChatApplicationRunner.class , args);
     }
 }

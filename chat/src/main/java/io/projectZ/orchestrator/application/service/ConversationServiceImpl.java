@@ -52,6 +52,9 @@ public class ConversationServiceImpl implements ConversationService {
             if (!conversation.getParticipants().isEmpty()) {
 
                 for (String participant : conversation.getParticipants()) {
+                    if (participant.contains(jidPostfix)){
+                        participant = participant.replace(jidPostfix , "");
+                    }
                     List<UserRepresentation> result = keycloakAdminClient.findByUsername(participant, SecurityConfig.API_TOKEN);
                     if (result.size() == 0) {
                         throw new IllegalArgumentException("user does not have exist : " + conversation.getParticipants().get(0));
