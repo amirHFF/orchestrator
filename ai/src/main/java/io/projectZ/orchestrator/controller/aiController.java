@@ -5,12 +5,10 @@ package io.projectZ.orchestrator.controller;
   Created : 7/16/2026 - 1:39 AM
 */
 
-import io.projectZ.orchestrator.controller.dto.ChatTalkRequest;
-import io.projectZ.orchestrator.controller.dto.ChatTalkResponse;
+import io.projectZ.orchestrator.controller.dto.request.ChatTalkRequest;
+import io.projectZ.orchestrator.controller.dto.response.ChatTalkResponse;
 import io.projectZ.orchestrator.coordinator.AiCoordinator;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,6 +25,5 @@ public class aiController {
         String response = aiCoordinator.processMessage(message , sessionId);
         return ResponseEntity.ok().body(new ChatTalkResponse(response));
     }
-
 }
 

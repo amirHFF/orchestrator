@@ -1,4 +1,4 @@
-package io.projectZ.orchestrator.controller.dto;
+package io.projectZ.orchestrator.controller.dto.response;
 /*
   Project : Orchestrator
   Author  : AmirHFF

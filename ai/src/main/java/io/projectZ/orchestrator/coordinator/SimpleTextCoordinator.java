@@ -6,14 +6,11 @@ package io.projectZ.orchestrator.coordinator;
 */
 
 import io.projectZ.orchestrator.config.AiLLMConfig;
-import io.projectZ.orchestrator.controller.dto.ChatTalkRequest;
+import io.projectZ.orchestrator.controller.dto.request.ChatTalkRequest;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 @Service
