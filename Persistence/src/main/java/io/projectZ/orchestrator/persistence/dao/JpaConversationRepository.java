@@ -1,11 +1,11 @@
-package io.projectZ.orchestrator.dao;
+package io.projectZ.orchestrator.persistence.dao;
 /*
   Project : Orchestrator
   Author  : AmirHFF
   Created : 7/5/2026 - 6:35 PM
 */
 
-import io.projectZ.orchestrator.entity.ConversationEntity;
+import io.projectZ.orchestrator.persistence.entity.ConversationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

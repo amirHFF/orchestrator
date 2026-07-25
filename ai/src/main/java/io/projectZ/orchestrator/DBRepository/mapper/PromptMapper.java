@@ -5,13 +5,42 @@ package io.projectZ.orchestrator.DBRepository.mapper;
   Created : 7/23/2026 - 9:51 AM
 */
 
-import io.projectZ.orchestrator.entity.PromptEntity;
+import io.projectZ.orchestrator.model.PromptType;
+import io.projectZ.orchestrator.persistence.entity.PromptEntity;
 import io.projectZ.orchestrator.model.PromptModel;
+import io.projectZ.orchestrator.persistence.entity.PromptTypeEnum;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
-public interface PromptMapper extends BaseMapper<PromptEntity , PromptModel> {
-    PromptMapper getInstance = Mappers.getMapper(PromptMapper.class);
+@Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+public interface PromptMapper extends BaseMapper<PromptEntity, PromptModel> {
+	static PromptMapper getInstance = Mappers.getMapper(PromptMapper.class);
+
+	@Mapping(source = "parent", target = "parentPromptCode")
+	@Mapping(source = "promptType", target = "promptType", qualifiedByName = "getPromptTypeEnum")
+	@Override
+	PromptEntity modelToEntity(PromptModel model);
+
+	@Mapping(source = "promptType", target = "promptType", qualifiedByName = "getPromptType")
+	@Mapping(source = "parentPromptCode", target = "parent")
+	@Override
+	PromptModel entityToModel(PromptEntity entity);
+
+	@Named(value = "getPromptType")
+	public default PromptType getPromptType(PromptTypeEnum promptTypeEnum) {
+		if (promptTypeEnum != null)
+			return PromptType.valueOf(promptTypeEnum.name());
+		else return null;
+	}
+
+	@Named(value = "getPromptTypeEnum")
+	public default PromptTypeEnum getPromptTypeEnum(PromptType promptType) {
+		if (promptType != null)
+		return PromptTypeEnum.valueOf(promptType.name());
+		else return null;
+	}
 }
 

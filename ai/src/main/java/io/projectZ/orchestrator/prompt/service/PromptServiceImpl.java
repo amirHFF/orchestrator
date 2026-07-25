@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Service
 public class PromptServiceImpl implements PromptService {
@@ -32,7 +33,7 @@ public class PromptServiceImpl implements PromptService {
                     throw new RuntimeException("parent not found");
                 }
             }
-            persistencePort.save(loadedPrompt);
+            persistencePort.save(promptModel);
         } else {
             persistencePort.update(promptModel);
         }
@@ -42,6 +43,11 @@ public class PromptServiceImpl implements PromptService {
     public PromptModel get(String code) {
         logger.info("get prompt {} ", code);
         return persistencePort.get(code);
+    }
+
+    @Override
+    public List<PromptModel> getAllRelatedPrompt(String code) {
+        return persistencePort.getAllRelatedPrompts(code);
     }
 }
 

@@ -7,7 +7,10 @@ package io.projectZ.orchestrator.prompt.repo;
 
 import io.projectZ.orchestrator.model.PromptModel;
 
+import java.util.List;
+
 public interface PromptPersistencePort {
+    List<PromptModel> getAllRelatedPrompts(String code);
     PromptModel get(String code);
     void save(PromptModel promptModel);
     void update(PromptModel promptModel);

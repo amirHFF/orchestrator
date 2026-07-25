@@ -10,9 +10,11 @@ import io.projectZ.orchestrator.controller.dto.request.PromptResponseDto;
 import io.projectZ.orchestrator.controller.mapper.PromptControllerMapper;
 import io.projectZ.orchestrator.model.PromptModel;
 import io.projectZ.orchestrator.prompt.service.PromptService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@SecurityRequirement(name = "Bearer Authentication")
 @RestController
 @RequestMapping("/prompts")
 public class PromptController {

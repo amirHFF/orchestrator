@@ -1,4 +1,4 @@
-package io.projectZ.orchestrator.entity;
+package io.projectZ.orchestrator.persistence.entity;
 /*
   Project : Orchestrator
   Author  : AmirHFF
@@ -6,5 +6,5 @@ package io.projectZ.orchestrator.entity;
 */
 
 public enum PromptTypeEnum {
-    BASE,RULE,FEATURE,BUSINESS,LEARNING_OBJECT,
+    BASE,RULE,FEATURE,BUSINESS,LEARNING_OBJECT,CONVERSATIONAL
 }

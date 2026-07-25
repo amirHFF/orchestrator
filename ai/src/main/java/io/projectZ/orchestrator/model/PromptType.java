@@ -6,5 +6,5 @@ package io.projectZ.orchestrator.model;
 */
 
 public enum PromptType {
-    BASE,RULE,FEATURE,BUSINESS,LEARNING_OBJECT,
+    BASE,RULE,FEATURE,BUSINESS,LEARNING_OBJECT,CONVERSATIONAL
 }

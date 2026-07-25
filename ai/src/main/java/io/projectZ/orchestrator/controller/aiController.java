@@ -8,9 +8,10 @@ package io.projectZ.orchestrator.controller;
 import io.projectZ.orchestrator.controller.dto.request.ChatTalkRequest;
 import io.projectZ.orchestrator.controller.dto.response.ChatTalkResponse;
 import io.projectZ.orchestrator.coordinator.AiCoordinator;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@SecurityRequirement(name = "Bearer Authentication")
 @RestController
 @RequestMapping(path = "/chat/ai")
 public class aiController {

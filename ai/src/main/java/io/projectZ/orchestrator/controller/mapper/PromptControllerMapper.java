@@ -9,10 +9,19 @@ import io.projectZ.orchestrator.controller.dto.request.PromptRequestDto;
 import io.projectZ.orchestrator.controller.dto.request.PromptResponseDto;
 import io.projectZ.orchestrator.model.PromptModel;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface PromptControllerMapper extends BaseControllerMapper<PromptModel , PromptResponseDto , PromptRequestDto> {
     static PromptControllerMapper getInstance = Mappers.getMapper(PromptControllerMapper.class);
+
+    @Mapping(source = "parentPrompt" , target = "parent")
+    @Override
+    PromptModel requestToModel(PromptRequestDto request);
+
+    @Mapping(source = "parent" , target = "parentPrompt")
+    @Override
+    PromptResponseDto ModelToResponse(PromptModel dto);
 }
 

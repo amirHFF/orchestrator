@@ -15,7 +15,7 @@ public class PromptModel {
     private String code;
     private String title;
     private String parent;
-    private PromptType type;
+    private PromptType promptType;
 
 }
 

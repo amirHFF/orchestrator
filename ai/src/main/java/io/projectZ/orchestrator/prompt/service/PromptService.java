@@ -7,10 +7,13 @@ package io.projectZ.orchestrator.prompt.service;
 
 import io.projectZ.orchestrator.model.PromptModel;
 
+import java.util.List;
+
 public interface PromptService {
 
     void saveOrUpdate(PromptModel promptModel);
     PromptModel get(String code);
+    List<PromptModel> getAllRelatedPrompt(String code);
 
 }
 

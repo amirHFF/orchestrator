@@ -1,4 +1,4 @@
-package io.projectZ.orchestrator.entity;
+package io.projectZ.orchestrator.persistence.entity;
 /*
   Project : Orchestrator
   Author  : AmirHFF
@@ -21,7 +21,7 @@ public class ChatBotEntity extends BaseEntity{
     @Column(name = "KEYCLOAK_ID" , unique = true , nullable = false )
     private String keycloakId;
     @Column(name = "BOT_ID" ,unique = true , nullable = false)
-    private String BotID;
+    private String botID;
     @Column(name = "NAME")
     private String name;
     @Column(name = "PROMPT_CODE")

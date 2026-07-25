@@ -30,6 +30,12 @@ public class BotController {
         ChatBot savedChatBot = chatBotService.save(chatBot);
         return ResponseEntity.status(HttpStatus.CREATED).body(ChatBotControllerMapper.getInstance.ModelToResponse(chatBot));
     }
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<ChatBotResponseDto> update(@RequestBody ChatBotRequestDto chatBotRequestDto) {
+        ChatBot chatBot = ChatBotControllerMapper.getInstance.requestToModel(chatBotRequestDto);
+        ChatBot updateChatBot = chatBotService.update(chatBot);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ChatBotControllerMapper.getInstance.ModelToResponse(chatBot));
+    }
     @GetMapping(path = "/{botID}")
     public ResponseEntity<ChatBotResponseDto> getBot(@PathVariable String botID){
         ChatBot chatBot = chatBotService.get(botID);
