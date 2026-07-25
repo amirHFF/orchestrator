@@ -5,6 +5,7 @@ package io.projectZ.orchestrator.entity;
   Created : 7/5/2026 - 6:36 PM
 */
 
+ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
