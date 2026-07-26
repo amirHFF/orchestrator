@@ -11,10 +11,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PromptModel {
-    private String prompt;
+    private String content;
     private String code;
     private String title;
-    private String parent;
+    private Integer version;
     private PromptType promptType;
 
 }

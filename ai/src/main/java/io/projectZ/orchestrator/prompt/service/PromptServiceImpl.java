@@ -27,12 +27,6 @@ public class PromptServiceImpl implements PromptService {
     public void saveOrUpdate(PromptModel promptModel) {
         PromptModel loadedPrompt = persistencePort.get(promptModel.getCode());
         if (loadedPrompt == null) {
-            if (promptModel.getParent() != null) {
-                PromptModel loadedParentPrompt = persistencePort.get(promptModel.getParent());
-                if (loadedParentPrompt == null) {
-                    throw new RuntimeException("parent not found");
-                }
-            }
             persistencePort.save(promptModel);
         } else {
             persistencePort.update(promptModel);
@@ -43,11 +37,6 @@ public class PromptServiceImpl implements PromptService {
     public PromptModel get(String code) {
         logger.info("get prompt {} ", code);
         return persistencePort.get(code);
-    }
-
-    @Override
-    public List<PromptModel> getAllRelatedPrompt(String code) {
-        return persistencePort.getAllRelatedPrompts(code);
     }
 }
 

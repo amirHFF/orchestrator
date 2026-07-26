@@ -6,5 +6,16 @@ package io.projectZ.orchestrator.model;
 */
 
 public enum PromptType {
-    BASE,RULE,FEATURE,BUSINESS,LEARNING_OBJECT,CONVERSATIONAL
+    SYSTEM,
+    PERSONA,
+    ROLE,
+    CONTEXT,
+    INSTRUCTION,
+    CONSTRAINT,
+    OUTPUT_FORMAT,
+    EXAMPLE,
+    REASONING,
+    SAFETY,
+    STYLE,
+    TOOL
 }

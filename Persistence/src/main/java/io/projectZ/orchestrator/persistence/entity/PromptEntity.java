@@ -19,15 +19,13 @@ public class PromptEntity extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "promptSeq")
     private long id;
 
-    @Column(nullable = false)
-    private String prompt;
+    @Column(columnDefinition = "TEXT",nullable = false)
+    private String content;
     @Column(nullable = false ,unique = true)
     private String code;
 
     private String title;
 
-    @Column(name = "PARENT_PROMPT_CODE")
-    private String parentPromptCode;
     @Enumerated(value = EnumType.STRING)
     private PromptTypeEnum promptType;
 

@@ -13,7 +13,6 @@ public interface PromptService {
 
     void saveOrUpdate(PromptModel promptModel);
     PromptModel get(String code);
-    List<PromptModel> getAllRelatedPrompt(String code);
 
 }
 

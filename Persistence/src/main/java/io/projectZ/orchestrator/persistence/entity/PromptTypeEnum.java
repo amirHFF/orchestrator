@@ -6,5 +6,15 @@ package io.projectZ.orchestrator.persistence.entity;
 */
 
 public enum PromptTypeEnum {
-    BASE,RULE,FEATURE,BUSINESS,LEARNING_OBJECT,CONVERSATIONAL
+    SYSTEM,
+    ROLE,
+    CONTEXT,
+    INSTRUCTION,
+    CONSTRAINT,
+    OUTPUT_FORMAT,
+    EXAMPLE,
+    REASONING,
+    SAFETY,
+    STYLE,
+    TOOL
 }

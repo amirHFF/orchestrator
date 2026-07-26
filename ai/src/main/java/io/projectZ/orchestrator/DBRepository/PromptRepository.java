@@ -29,12 +29,6 @@ public class PromptRepository implements PromptPersistencePort {
 	}
 
     @Override
-    public List<PromptModel> getAllRelatedPrompts(String code) {
-        List<PromptEntity> promptEntities = jpaRepository.findAllByParentPromptCodeOrCode(code, code);
-        return promptEntities.stream().map(PromptMapper.getInstance::entityToModel).collect(Collectors.toList());
-    }
-
-    @Override
     public PromptModel get(String code) {
         PromptEntity entity= jpaRepository.findByCode(code);
         return PromptMapper.getInstance.entityToModel(entity);
@@ -52,9 +46,8 @@ public class PromptRepository implements PromptPersistencePort {
     public void update(PromptModel promptModel) {
         PromptEntity loaded = jpaRepository.findByCode(promptModel.getCode());
         if (loaded !=null){
-            loaded.setPrompt(promptModel.getPrompt());
+            loaded.setContent(promptModel.getContent());
             loaded.setTitle(promptModel.getTitle());
-            loaded.setParentPromptCode(promptModel.getParent());
             loaded.setPromptType(PromptTypeEnum.valueOf(promptModel.getPromptType().name()));
         }else {
             throw new RuntimeException("prompt not found");

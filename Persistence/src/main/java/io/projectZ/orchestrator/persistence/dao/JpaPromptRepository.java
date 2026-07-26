@@ -13,7 +13,5 @@ import java.util.List;
 
 public interface JpaPromptRepository extends JpaRepository<PromptEntity , Long> {
     PromptEntity findByCode(String code);
-
-    List<PromptEntity> findAllByParentPromptCodeOrCode(String parentPromptCode , String code);
 }
 

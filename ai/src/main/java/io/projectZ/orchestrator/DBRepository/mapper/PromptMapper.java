@@ -19,13 +19,11 @@ import org.mapstruct.factory.Mappers;
 public interface PromptMapper extends BaseMapper<PromptEntity, PromptModel> {
 	static PromptMapper getInstance = Mappers.getMapper(PromptMapper.class);
 
-	@Mapping(source = "parent", target = "parentPromptCode")
 	@Mapping(source = "promptType", target = "promptType", qualifiedByName = "getPromptTypeEnum")
 	@Override
 	PromptEntity modelToEntity(PromptModel model);
 
 	@Mapping(source = "promptType", target = "promptType", qualifiedByName = "getPromptType")
-	@Mapping(source = "parentPromptCode", target = "parent")
 	@Override
 	PromptModel entityToModel(PromptEntity entity);
 

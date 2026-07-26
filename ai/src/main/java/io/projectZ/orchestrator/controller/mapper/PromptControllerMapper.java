@@ -16,11 +16,9 @@ import org.mapstruct.factory.Mappers;
 public interface PromptControllerMapper extends BaseControllerMapper<PromptModel , PromptResponseDto , PromptRequestDto> {
     static PromptControllerMapper getInstance = Mappers.getMapper(PromptControllerMapper.class);
 
-    @Mapping(source = "parentPrompt" , target = "parent")
     @Override
     PromptModel requestToModel(PromptRequestDto request);
 
-    @Mapping(source = "parent" , target = "parentPrompt")
     @Override
     PromptResponseDto ModelToResponse(PromptModel dto);
 }

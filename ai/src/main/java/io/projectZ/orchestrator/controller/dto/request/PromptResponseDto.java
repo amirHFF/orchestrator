@@ -6,53 +6,17 @@ package io.projectZ.orchestrator.controller.dto.request;
 */
 
 import io.projectZ.orchestrator.model.PromptType;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class PromptResponseDto {
-    private String prompt ;
+    private String content ;
     private String title;
     private String code;
-    private String parentPrompt;
+    private String version;
     private PromptType promptType;
-
-    public String getParentPrompt() {
-        return parentPrompt;
-    }
-
-    public void setParentPrompt(String parentPrompt) {
-        this.parentPrompt = parentPrompt;
-    }
-
-    public PromptType getPromptType() {
-        return promptType;
-    }
-
-    public void setPromptType(PromptType promptType) {
-        this.promptType = promptType;
-    }
-
-    public String getPrompt() {
-        return prompt;
-    }
-
-    public void setPrompt(String prompt) {
-        this.prompt = prompt;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 
 }
 
