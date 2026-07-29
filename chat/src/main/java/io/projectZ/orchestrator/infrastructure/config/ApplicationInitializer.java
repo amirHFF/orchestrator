@@ -8,21 +8,11 @@ package io.projectZ.orchestrator.infrastructure.config;
 import io.projectZ.orchestrator.infrastructure.adapter.in.xmpp.XmppClientListener;
 import io.projectZ.orchestrator.infrastructure.adapter.out.keycloak.KeycloakTokenGateway;
 import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.AiRestClient;
-import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.KeycloakAdminClient;
-import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.dto.AiResponse;
-import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.dto.ChatTalkRequest;
 import org.jivesoftware.smack.AbstractXMPPConnection;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.ApplicationContextInitializer;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-
-import java.time.Duration;
 
 @Component
 public class ApplicationInitializer {

@@ -5,10 +5,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
-@EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "io.projectZ.orchestrator.infrastructure.adapter.out.persistence.relational.dao")
-@EntityScan(basePackages = "io.projectZ.orchestrator.infrastructure.adapter.out.persistence.relational.model")
+//@Configuration
+//@EnableTransactionManagement
+//@EnableJpaRepositories(basePackages = "io.projectZ.orchestrator.infrastructure.adapter.out.persistence.relational.dao")
+//@EntityScan(basePackages = "io.projectZ.orchestrator.infrastructure.adapter.out.persistence.relational.model")
 public class JpaConfig {
 
 

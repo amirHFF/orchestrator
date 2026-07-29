@@ -8,5 +8,5 @@ package io.projectZ.orchestrator.application.port;
 import io.projectZ.orchestrator.entity.AiChatTalk;
 
 public interface AiPort {
-    AiChatTalk ask(String message , String sessionId);
+    AiChatTalk ask(String botID,String message , String sessionId);
 }

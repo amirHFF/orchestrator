@@ -10,16 +10,10 @@ import io.projectZ.orchestrator.entity.Conversation;
 import io.projectZ.orchestrator.infrastructure.adapter.in.web.dto.request.ConversationRequest;
 import io.projectZ.orchestrator.infrastructure.adapter.in.web.dto.response.ConversationResponse;
 import io.projectZ.orchestrator.infrastructure.adapter.in.web.mapper.ConversationControllerMapper;
-import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.KeycloakAdminClient;
-import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.OpenFireRestClient;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController()

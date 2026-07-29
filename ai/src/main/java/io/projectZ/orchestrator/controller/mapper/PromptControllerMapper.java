@@ -5,6 +5,7 @@ package io.projectZ.orchestrator.controller.mapper;
   Created : 7/24/2026 - 2:36 AM
 */
 
+import io.projectZ.orchestrator.ai.controller.mapper.BaseControllerMapper;
 import io.projectZ.orchestrator.controller.dto.request.PromptRequestDto;
 import io.projectZ.orchestrator.controller.dto.request.PromptResponseDto;
 import io.projectZ.orchestrator.model.PromptModel;

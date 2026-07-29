@@ -16,5 +16,6 @@ public enum PromptTypeEnum {
     REASONING,
     SAFETY,
     STYLE,
-    TOOL
+    TOOL ,
+    TEMPLATE
 }

@@ -8,8 +8,8 @@ package io.projectZ.orchestrator.infrastructure.adapter.out.persistence.relation
 import io.projectZ.orchestrator.application.port.ConversationPort;
 import io.projectZ.orchestrator.entity.Conversation;
 import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.mapper.ConversationMapper;
-import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.relational.dao.JpaConversationRepository;
-import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.relational.model.ConversationEntity;
+import io.projectZ.orchestrator.persistence.dao.JpaConversationRepository;
+import io.projectZ.orchestrator.persistence.entity.ConversationEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;

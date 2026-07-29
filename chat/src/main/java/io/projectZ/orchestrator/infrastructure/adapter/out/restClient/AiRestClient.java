@@ -17,12 +17,11 @@ public class AiRestClient {
     private Logger logger = LogManager.getLogger(AiRestClient.class);
     public RestClient restClient = RestClient.builder().baseUrl("http://localhost:8091").build();
 
-    public AiResponse sendQuestion(ChatTalkRequest chatTalkRequest , String sessionId) {
+    public AiResponse sendQuestion(ChatTalkRequest chatTalkRequest) {
         AiResponse aiResponse = null;
         try {
             aiResponse = restClient.post().uri("/chat/ai")
                     .header("accept", "application/json")
-                    .header("sessionId", sessionId)
 //                    .header("Authorization", "Bearer "+accessToken)
                     .body(chatTalkRequest)
                     .retrieve().body(AiResponse.class);

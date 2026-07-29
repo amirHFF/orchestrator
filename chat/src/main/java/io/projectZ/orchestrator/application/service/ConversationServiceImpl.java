@@ -7,17 +7,13 @@ package io.projectZ.orchestrator.application.service;
 
 import io.projectZ.orchestrator.application.port.ConversationPort;
 import io.projectZ.orchestrator.entity.Conversation;
-import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.KeycloakAdminClient;
+import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.KeycloakAdminClientTemp;
 import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.UserRepresentation;
 import io.projectZ.orchestrator.infrastructure.config.SecurityConfig;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -25,11 +21,11 @@ import java.util.stream.Collectors;
 public class ConversationServiceImpl implements ConversationService {
     private final static String jidPostfix = "@zchat.ir";
     private final ConversationPort conversationPort;
-    private final KeycloakAdminClient keycloakAdminClient;
+    private final KeycloakAdminClientTemp keycloakAdminClientTemp;
 
-    public ConversationServiceImpl(ConversationPort conversationPort, KeycloakAdminClient keycloakAdminClient) {
+    public ConversationServiceImpl(ConversationPort conversationPort, KeycloakAdminClientTemp keycloakAdminClientTemp) {
         this.conversationPort = conversationPort;
-        this.keycloakAdminClient = keycloakAdminClient;
+        this.keycloakAdminClientTemp = keycloakAdminClientTemp;
     }
 
     @Override
@@ -55,7 +51,7 @@ public class ConversationServiceImpl implements ConversationService {
                     if (participant.contains(jidPostfix)){
                         participant = participant.replace(jidPostfix , "");
                     }
-                    List<UserRepresentation> result = keycloakAdminClient.findByUsername(participant, SecurityConfig.API_TOKEN);
+                    List<UserRepresentation> result = keycloakAdminClientTemp.findByUsername(participant, SecurityConfig.API_TOKEN);
                     if (result.size() == 0) {
                         throw new IllegalArgumentException("user does not have exist : " + conversation.getParticipants().get(0));
                     }

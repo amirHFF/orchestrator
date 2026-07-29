@@ -24,6 +24,8 @@ public class ChatBotEntity extends BaseEntity{
     private String botID;
     @Column(name = "NAME")
     private String name;
+    @Column(name = "ai_model")
+    private String aiModel;
     @Column(name = "PROMPT_CODE")
     private String promptCode;
     @Column(name = "OWNER_USER_ID")

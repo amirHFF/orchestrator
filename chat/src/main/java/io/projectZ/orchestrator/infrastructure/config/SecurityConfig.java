@@ -5,7 +5,7 @@ package io.projectZ.orchestrator.infrastructure.config;
   Created : 5/22/2026 - 5:34 PM
 */
 
-import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.KeycloakAdminClient;
+import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.KeycloakAdminClientTemp;
 import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.dto.KeycloakTokenResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +32,7 @@ public class SecurityConfig {
 
     @Lazy
     @Autowired
-    private KeycloakAdminClient keycloakAdminClient;
+    private KeycloakAdminClientTemp keycloakAdminClientTemp;
 
     public SecurityConfig(JwtAuthConverter converter) {
         this.converter = converter;
@@ -60,7 +60,7 @@ public class SecurityConfig {
     @Scheduled(initialDelay = 10 , fixedRate = 600 , timeUnit = TimeUnit.SECONDS )
     public void updateApiToken(){
         System.out.println("api token updated");
-        KeycloakTokenResponse tokenResponse = keycloakAdminClient.generateApiToken();
+        KeycloakTokenResponse tokenResponse = keycloakAdminClientTemp.generateApiToken();
         API_TOKEN = tokenResponse.getAccessToken();
     }
 }

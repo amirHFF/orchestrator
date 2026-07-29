@@ -6,12 +6,12 @@ package io.projectZ.orchestrator.infrastructure.adapter.out.persistence.mapper;
 */
 
 import io.projectZ.orchestrator.entity.Conversation;
-import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.relational.model.ConversationEntity;
+import io.projectZ.orchestrator.persistence.entity.ConversationEntity;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring" , nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-public interface ConversationMapper extends BaseMapper<ConversationEntity , Conversation> {
+public interface ConversationMapper extends BaseMapper<ConversationEntity, Conversation> {
   ConversationMapper getInstance = Mappers.getMapper(ConversationMapper.class);
 
   @Mapping(source = "insertTime" , target = "lastMessageTime" )

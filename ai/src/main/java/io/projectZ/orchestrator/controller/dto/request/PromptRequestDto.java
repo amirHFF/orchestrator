@@ -16,6 +16,7 @@ public class PromptRequestDto {
     private String title;
     private String code;
     private PromptType promptType;
+    private Boolean isBase64;
 
 }
 

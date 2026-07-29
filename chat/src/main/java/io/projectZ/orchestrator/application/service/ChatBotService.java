@@ -11,4 +11,5 @@ public interface ChatBotService {
     ChatBot get(String BotID);
     ChatBot save(ChatBot chatBot);
     ChatBot update(ChatBot chatBot);
+    void start(String BotID);
 }

@@ -27,7 +27,7 @@ public class ChatBotMessageHandler implements ChatMessageHandler{
     @Override
     public void handleReceivedMessage(ChatMessage chatMessage) {
         logger.info("messsage received to chat bot service id: {}",chatMessage.getId());
-        AiChatTalk aiChatTalk = aiPort.ask(chatMessage.getContent(), chatMessage.getFrom());
+        AiChatTalk aiChatTalk = aiPort.ask(chatMessage.getTo(),chatMessage.getContent(), chatMessage.getFrom());
         ChatMessage aiResponseChatMessage = new ChatMessage(aiChatTalk.getContent(), chatMessage.getTo() , chatMessage.getFrom());
         sendMessage(aiResponseChatMessage);
     }

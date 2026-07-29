@@ -24,10 +24,11 @@ public class aiGateway implements AiPort {
     }
 
     @Override
-    public AiChatTalk ask(String message , String sessionId) {
+    public AiChatTalk ask(String botID,String message , String userId) {
         AiChatTalk chatTalk = null;
 
-        AiResponse aiResponse = restClient.sendQuestion(new ChatTalkRequest("qwen" , "drunk" , message), sessionId);
+        ChatTalkRequest chatTalkRequest = new ChatTalkRequest(userId,botID , message);
+        AiResponse aiResponse = restClient.sendQuestion(chatTalkRequest);
         if (aiResponse != null) {
             chatTalk = new AiChatTalk();
             chatTalk.setContent(aiResponse.getContent());

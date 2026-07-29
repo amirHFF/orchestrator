@@ -5,6 +5,7 @@ package io.projectZ.orchestrator.DBRepository.mapper;
   Created : 7/23/2026 - 9:51 AM
 */
 
+import io.projectZ.orchestrator.ai.DBRepository.mapper.BaseMapper;
 import io.projectZ.orchestrator.model.PromptType;
 import io.projectZ.orchestrator.persistence.entity.PromptEntity;
 import io.projectZ.orchestrator.model.PromptModel;
