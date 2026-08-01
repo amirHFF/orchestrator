@@ -1,14 +1,13 @@
-package io.projectZ.orchestrator.DBRepository.mapper;
+package io.projectZ.orchestrator.ai.DBRepository.mapper;
 /*
   Project : Orchestrator
   Author  : AmirHFF
   Created : 7/23/2026 - 9:51 AM
 */
 
-import io.projectZ.orchestrator.ai.DBRepository.mapper.BaseMapper;
-import io.projectZ.orchestrator.model.PromptType;
+import io.projectZ.orchestrator.ai.model.PromptType;
 import io.projectZ.orchestrator.persistence.entity.PromptEntity;
-import io.projectZ.orchestrator.model.PromptModel;
+import io.projectZ.orchestrator.ai.model.PromptModel;
 import io.projectZ.orchestrator.persistence.entity.PromptTypeEnum;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -16,7 +15,7 @@ import org.mapstruct.Named;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+@Mapper
 public interface PromptMapper extends BaseMapper<PromptEntity, PromptModel> {
 	static PromptMapper getInstance = Mappers.getMapper(PromptMapper.class);
 

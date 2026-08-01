@@ -15,6 +15,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @SecurityRequirement(name = "Bearer Authentication")
 @RestController
 @RequestMapping("/bot")
@@ -42,6 +45,13 @@ public class BotController {
     public ResponseEntity<ChatBotResponseDto> getBot(@PathVariable String botID){
         ChatBot chatBot = chatBotService.get(botID);
         return ResponseEntity.ok(ChatBotControllerMapper.getInstance.ModelToResponse(chatBot));
+    }
+
+    @GetMapping(path = "/list")
+    public ResponseEntity<List<ChatBotResponseDto>> getAll(){
+        List<ChatBot> chatBots = chatBotService.getAll();
+        List<ChatBotResponseDto> botResponse = chatBots.stream().map(ChatBotControllerMapper.getInstance::ModelToResponse).collect(Collectors.toList());
+        return ResponseEntity.ok(botResponse);
     }
 
     @PostMapping(path = "/start/{botID}")

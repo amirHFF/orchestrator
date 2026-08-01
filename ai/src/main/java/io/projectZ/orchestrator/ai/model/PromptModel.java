@@ -1,4 +1,4 @@
-package io.projectZ.orchestrator.model;
+package io.projectZ.orchestrator.ai.model;
 /*
   Project : Orchestrator
   Author  : AmirHFF
@@ -16,6 +16,6 @@ public class PromptModel {
     private String title;
     private Integer version;
     private PromptType promptType;
-
+    private Integer priority;
 }
 

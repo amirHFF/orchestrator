@@ -5,6 +5,6 @@ package io.projectZ.orchestrator.infrastructure.adapter.out.restClient.dto;
   Created : 7/17/2026 - 1:32 PM
 */
 
-public record ChatTalkRequest(String questionerUserId,String botID, String content ) {
+public record ChatTalkRequest(String proxyUsername , String realUsername , String aiModel , String templatePromptCode , String content ) {
 }
 

@@ -6,9 +6,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Table(name = "AI_MODEL")
+@Table(name = "AI_MODEL2")
 @Entity
-public class AIModelEntity {
+public class AIModelEntity extends BaseEntity {
 
 	@Id
 	@SequenceGenerator(name = "AiModelSeq", sequenceName = "AI_MODEL_SEQ", allocationSize = 1)
@@ -30,5 +30,7 @@ public class AIModelEntity {
 	private AiModelType type;
 
 	private Long usedToken;
+
+	private boolean isActive;
 
 }

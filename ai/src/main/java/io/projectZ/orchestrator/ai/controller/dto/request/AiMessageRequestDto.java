@@ -7,7 +7,7 @@ package io.projectZ.orchestrator.ai.controller.dto.request;
 
 import javax.validation.constraints.NotNull;
 
-public record AiMessageRequestDto(@NotNull String username , @NotNull String model  , @NotNull String templatePromptCode , @NotNull String content){
+public record AiMessageRequestDto(@NotNull String proxyUsername ,@NotNull String realUsername , @NotNull String model  , @NotNull String templatePromptCode , @NotNull String content){
 
 }
 

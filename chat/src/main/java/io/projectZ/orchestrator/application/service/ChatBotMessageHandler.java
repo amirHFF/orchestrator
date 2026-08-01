@@ -9,6 +9,7 @@ import io.projectZ.orchestrator.application.port.AiPort;
 import io.projectZ.orchestrator.application.port.ChatPort;
 import io.projectZ.orchestrator.entity.AiChatTalk;
 import io.projectZ.orchestrator.entity.ChatMessage;
+import io.projectZ.orchestrator.infrastructure.adapter.out.ai.dto.ChatTalk;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class ChatBotMessageHandler implements ChatMessageHandler{
     @Override
     public void handleReceivedMessage(ChatMessage chatMessage) {
         logger.info("messsage received to chat bot service id: {}",chatMessage.getId());
-        AiChatTalk aiChatTalk = aiPort.ask(chatMessage.getTo(),chatMessage.getContent(), chatMessage.getFrom());
+        AiChatTalk aiChatTalk = aiPort.ask(new ChatTalk(chatMessage.getTo() , chatMessage.getFrom() ,"qwen" , "template-test-1",chatMessage.getContent()));
         ChatMessage aiResponseChatMessage = new ChatMessage(aiChatTalk.getContent(), chatMessage.getTo() , chatMessage.getFrom());
         sendMessage(aiResponseChatMessage);
     }

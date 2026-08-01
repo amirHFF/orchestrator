@@ -8,7 +8,10 @@ package io.projectZ.orchestrator.persistence.dao;
 import io.projectZ.orchestrator.persistence.entity.ChatBotEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface JpaChatBotRepository extends JpaRepository<ChatBotEntity , Long> {
     ChatBotEntity findByBotID(String botID);
+    List<ChatBotEntity> findAllByEnabled(boolean enable);
 }
 

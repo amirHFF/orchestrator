@@ -28,7 +28,7 @@ public class AiModelController {
 		return ResponseEntity.ok(aiModelResponses.stream().map(x -> new AiModelResponse(x.getName() , x.getTitle(), x.getApiKey() , x.getUrl())).collect(Collectors.toList()));
 	}
 	@PostMapping
-	public ResponseEntity<Boolean> save(@RequestBody AiModelRequest aiModelRequest) {
+	public ResponseEntity<Boolean> create(@RequestBody AiModelRequest aiModelRequest) {
 
 		AIModel aiModel = new AIModel();
 		aiModel.setName(aiModelRequest.name());

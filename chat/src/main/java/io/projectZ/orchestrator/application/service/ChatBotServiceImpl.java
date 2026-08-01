@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Service
 public class ChatBotServiceImpl implements ChatBotService {
@@ -47,6 +48,11 @@ public class ChatBotServiceImpl implements ChatBotService {
     }
 
     @Override
+    public List<ChatBot> getAll() {
+        return persistencePort.getAll();
+    }
+
+    @Override
     @Transactional
     public ChatBot save(@Valid  ChatBot chatBot) {
         String BotID = BotIdentifierGenerator.generateRaw();
@@ -54,16 +60,16 @@ public class ChatBotServiceImpl implements ChatBotService {
         if (chatBot.getPromptCode()!=null){
 
         }
-        String keycloakId= userManagementPort.registerUser(createBotUser(BotID));
+        String keycloakId= userManagementPort.registerUser(createBotUser(chatBot));
         chatBot.setKeycloakId(keycloakId);
         persistencePort.save(chatBot);
         return chatBot;
     }
-    private BotUser createBotUser(String botUsername){
+    private BotUser createBotUser(ChatBot chatBot){
         BotUser botUser = new BotUser();
-        botUser.setUsername(botUsername);
-        botUser.setFirstname(botUsername);
-        botUser.setLastname("zchat");
+        botUser.setUsername(chatBot.getBotID());
+        botUser.setFirstname(chatBot.getName());
+        botUser.setLastname("phoenix");
         botUser.setPassword("!23");
         return botUser;
     }

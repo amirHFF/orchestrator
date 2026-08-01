@@ -5,11 +5,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AiActorModel {
+public class AiProxyModel {
 
-	private String username;
+	private String proxyUsername;
+	private String realUsername;
 	private String accessToken;
-	private String promptTemplateCode;
+	private PromptModel prompt;
 	private AIModel model;
 
 }

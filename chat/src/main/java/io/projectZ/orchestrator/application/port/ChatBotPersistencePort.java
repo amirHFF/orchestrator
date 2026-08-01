@@ -7,8 +7,11 @@ package io.projectZ.orchestrator.application.port;
 
 import io.projectZ.orchestrator.entity.ChatBot;
 
+import java.util.List;
+
 public interface ChatBotPersistencePort {
     ChatBot getByBotID(String BotID);
+    List<ChatBot> getAll();
     void save(ChatBot chatBot);
     void update(ChatBot chatBot);
 }

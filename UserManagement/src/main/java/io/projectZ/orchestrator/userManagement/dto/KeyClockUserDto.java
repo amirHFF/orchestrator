@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -20,7 +22,7 @@ public class KeyClockUserDto {
     private String lastName;
     private String email;
     private boolean emailVerified;
-    private Credential credentials;
+    private List<Credential> credentials;
 
 }
 

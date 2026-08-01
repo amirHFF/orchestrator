@@ -29,5 +29,7 @@ public class PromptEntity extends BaseEntity{
     @Enumerated(value = EnumType.STRING)
     private PromptTypeEnum promptType;
 
+    private Integer priority;
+
 }
 

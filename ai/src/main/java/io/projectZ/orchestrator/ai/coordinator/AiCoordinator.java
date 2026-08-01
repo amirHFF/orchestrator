@@ -5,9 +5,10 @@ package io.projectZ.orchestrator.ai.coordinator;
   Created : 7/16/2026 - 1:03 AM
 */
 
-import io.projectZ.orchestrator.ai.model.AiActorModel;
+import io.projectZ.orchestrator.ai.model.AiProxyModel;
+import io.projectZ.orchestrator.ai.model.PromptModel;
 
 public interface AiCoordinator<E> {
-    E processMessage(AiActorModel actorModel ,String message);
+    E processMessage(AiProxyModel actorModel , String message);
 }
 

@@ -16,5 +16,6 @@ public class UserBase {
     private String firstname;
     private String lastname;
     private String email;
+    private boolean isEnabled;
 }
 

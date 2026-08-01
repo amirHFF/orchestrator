@@ -17,4 +17,6 @@ public class AIModel {
 	private String url;
 	private AiModelType type;
 	private long usedToken;
+	private Double temperature;
+	private boolean isActive;
 }

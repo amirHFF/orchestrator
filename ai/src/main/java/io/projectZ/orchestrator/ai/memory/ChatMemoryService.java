@@ -25,7 +25,7 @@ public class ChatMemoryService {
 
         return MessageWindowChatMemory.builder()
                 .chatMemoryRepository(repository)
-                .maxMessages(20)           // حداکثر ۲۰ پیام
+                .maxMessages(3)
                 .build();
     }
 

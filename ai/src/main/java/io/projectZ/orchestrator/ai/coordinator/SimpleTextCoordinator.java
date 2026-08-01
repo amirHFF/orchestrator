@@ -6,24 +6,27 @@ package io.projectZ.orchestrator.ai.coordinator;
 */
 
 import io.projectZ.orchestrator.ai.config.AiLLMConfig;
-import io.projectZ.orchestrator.ai.model.AiActorModel;
+import io.projectZ.orchestrator.ai.model.AiProxyModel;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.messages.SystemMessage;
+import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SimpleTextCoordinator implements AiCoordinator<String> {
 
     private ChatClient chatClient;
+    private final ModelFactory modelFactory;
+    private final PromptEngine promptEngine;
 
-    @Autowired
-    private ApplicationContext appctx;
-    private final AiLLMConfig aiLLMConfig;
-
-    public SimpleTextCoordinator(AiLLMConfig aiLLMConfig) {
-        this.aiLLMConfig = aiLLMConfig;
+    public SimpleTextCoordinator(ModelFactory modelFactory, PromptEngine promptEngine) {
+        this.modelFactory = modelFactory;
+        this.promptEngine = promptEngine;
     }
 
     //    public SimpleTextCoordinator(ChatClient.Builder chatClientBuilder) {
@@ -32,20 +35,20 @@ public class SimpleTextCoordinator implements AiCoordinator<String> {
 //                .build();
 //    }
     @Override
-    public String processMessage(AiActorModel actor ,String message) {
-        if (actor.getModel().equals("gpt"))
-            chatClient = (ChatClient) appctx.getBean("gpt");
-        else if (actor.getModel().equals("qwen"))
-            chatClient = (ChatClient) appctx.getBean("qwen");
+    public String processMessage(AiProxyModel proxy, String message) {
 
-        String personaPrompt="";
+        chatClient = modelFactory.createChatClient(proxy.getModel());
+        Prompt prompt = new Prompt(List.of(new SystemMessage("You are a helpful teacher. " +
+                "you teach english , but talk in farsi ,your main purpose is ensuring good learning .")));
+
         if (message.length() > 10)
-            personaPrompt = aiLLMConfig.promptMap.get(actor.getModel().toString());
+            prompt = promptEngine.render(proxy.getPrompt(), null);
+
 
         String response = chatClient.prompt()
-                .system(personaPrompt)
+                .system(prompt.getSystemMessage().getText())
                 .user(message)
-                .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID , actor.getUsername()))
+                .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, proxy.getRealUsername()))
                 .call()
                 .content();
         return response;

@@ -5,11 +5,11 @@ package io.projectZ.orchestrator.ai.controller;
   Created : 7/23/2026 - 11:55 AM
 */
 
-import io.projectZ.orchestrator.controller.dto.request.PromptRequestDto;
-import io.projectZ.orchestrator.controller.dto.request.PromptResponseDto;
-import io.projectZ.orchestrator.controller.mapper.PromptControllerMapper;
-import io.projectZ.orchestrator.model.PromptModel;
-import io.projectZ.orchestrator.prompt.service.PromptService;
+import io.projectZ.orchestrator.ai.controller.dto.request.PromptRequestDto;
+import io.projectZ.orchestrator.ai.controller.dto.request.PromptResponseDto;
+import io.projectZ.orchestrator.ai.controller.mapper.PromptControllerMapper;
+import io.projectZ.orchestrator.ai.model.PromptModel;
+import io.projectZ.orchestrator.ai.prompt.service.PromptService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

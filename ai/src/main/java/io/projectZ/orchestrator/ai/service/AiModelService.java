@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface AiModelService {
 	List<AIModel> getAllModels();
+	AIModel getModelByName(String name);
 
 	void save(AIModel model);
 

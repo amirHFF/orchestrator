@@ -7,8 +7,11 @@ package io.projectZ.orchestrator.application.service;
 
 import io.projectZ.orchestrator.entity.ChatBot;
 
+import java.util.List;
+
 public interface ChatBotService {
     ChatBot get(String BotID);
+    List<ChatBot> getAll();
     ChatBot save(ChatBot chatBot);
     ChatBot update(ChatBot chatBot);
     void start(String BotID);

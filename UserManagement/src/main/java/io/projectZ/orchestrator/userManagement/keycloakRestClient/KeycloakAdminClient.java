@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -87,17 +88,27 @@ public class KeycloakAdminClient {
     }
 
     public String registerUser(KeyClockUserDto userDto, String token) {
-        RestClient.ResponseSpec responseSpec = restClient.post().uri("/admin/realms/amir-api/users")
-                .header("Authorization", "Bearer " + token)
-                .header("Content-Type", "application/json")
-                .body(userDto)
-                .retrieve();
-        if (responseSpec != null && responseSpec.toBodilessEntity().getHeaders() != null) {
-            String location = responseSpec.toBodilessEntity().getHeaders().getFirst("Location");
-            String keycloakId = location.substring(location.lastIndexOf("/") + 1);
-            logger.info("registered userId : {}", keycloakId);
-            return keycloakId;
-        } else throw new RestClientException("registering user to keycloak return nothing");
+        try {
+            ResponseEntity<Void> response = restClient.post()
+                    .uri("/admin/realms/project-z/users")
+                    .header("Authorization", "Bearer " + token)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(userDto)
+                    .retrieve()
+                    .toBodilessEntity();
+
+            if (response.getStatusCode().is2xxSuccessful() && response.getHeaders().getLocation() != null) {
+                String location = response.getHeaders().getLocation().toString();
+                String keycloakId = location.substring(location.lastIndexOf("/") + 1);
+                logger.info("Registered userId: {}", keycloakId);
+                return keycloakId;
+            } else {
+                throw new RestClientException("Registration failed with status: " + response.getStatusCode());
+            }
+        } catch (Exception e) {
+            logger.error("Error registering user in Keycloak", e);
+            throw new RestClientException("Failed to register user", e);
+        }
     }
 }
 

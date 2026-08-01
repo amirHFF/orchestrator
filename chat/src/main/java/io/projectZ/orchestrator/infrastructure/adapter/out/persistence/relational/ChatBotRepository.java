@@ -12,6 +12,9 @@ import io.projectZ.orchestrator.persistence.entity.ChatBotEntity;
 import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.mapper.ChatBotMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Repository
 public class ChatBotRepository implements ChatBotPersistencePort {
 
@@ -29,6 +32,12 @@ public class ChatBotRepository implements ChatBotPersistencePort {
             chatBot = ChatBotMapper.getInstance.entityToModel(chatBotEntity);
         }
         return chatBot;
+    }
+
+    @Override
+    public List<ChatBot> getAll() {
+        List<ChatBotEntity> entityBotList = jpaChatBotRepository.findAllByEnabled(true);
+        return entityBotList.stream().map(ChatBotMapper.getInstance::entityToModel).collect(Collectors.toList());
     }
 
     @Override

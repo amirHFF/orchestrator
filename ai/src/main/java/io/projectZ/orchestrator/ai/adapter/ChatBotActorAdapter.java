@@ -1,7 +1,7 @@
 package io.projectZ.orchestrator.ai.adapter;
 
 import io.projectZ.orchestrator.ai.DBRepository.AiModelRepository;
-import io.projectZ.orchestrator.ai.model.AiActorModel;
+import io.projectZ.orchestrator.ai.model.AiProxyModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -17,8 +17,8 @@ public class ChatBotActorAdapter implements ActorAdapter {
 	}
 
 	@Override
-	public AiActorModel getActor(String id) {
-		AiActorModel aiActorModel = null;
+	public AiProxyModel getActor(String id) {
+		AiProxyModel aiProxyModel = null;
 		try {
 //			ChatBotResponseDto chatBotResponseDto = chatRestClient.fetchChatBotByID(id);
 

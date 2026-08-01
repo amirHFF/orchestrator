@@ -6,7 +6,8 @@ package io.projectZ.orchestrator.application.port;
 */
 
 import io.projectZ.orchestrator.entity.AiChatTalk;
+import io.projectZ.orchestrator.infrastructure.adapter.out.ai.dto.ChatTalk;
 
 public interface AiPort {
-    AiChatTalk ask(String botID,String message , String sessionId);
+    AiChatTalk ask(ChatTalk chatTalk);
 }

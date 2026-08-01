@@ -7,6 +7,7 @@ package io.projectZ.orchestrator.infrastructure.adapter.out.ai;
 
 import io.projectZ.orchestrator.application.port.AiPort;
 import io.projectZ.orchestrator.entity.AiChatTalk;
+import io.projectZ.orchestrator.infrastructure.adapter.out.ai.dto.ChatTalk;
 import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.AiRestClient;
 import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.dto.AiResponse;
 import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.dto.ChatTalkRequest;
@@ -24,16 +25,16 @@ public class aiGateway implements AiPort {
     }
 
     @Override
-    public AiChatTalk ask(String botID,String message , String userId) {
-        AiChatTalk chatTalk = null;
+    public AiChatTalk ask(ChatTalk chatTalk) {
+        AiChatTalk aiChatTalk = null;
 
-        ChatTalkRequest chatTalkRequest = new ChatTalkRequest(userId,botID , message);
+        ChatTalkRequest chatTalkRequest = new ChatTalkRequest(chatTalk.proxyUsername(), chatTalk.realUsername(),chatTalk.model() , chatTalk.templatePromptCode() , chatTalk.content());
         AiResponse aiResponse = restClient.sendQuestion(chatTalkRequest);
         if (aiResponse != null) {
-            chatTalk = new AiChatTalk();
-            chatTalk.setContent(aiResponse.getContent());
+            aiChatTalk = new AiChatTalk();
+            aiChatTalk.setContent(aiResponse.getContent());
         }
-        return chatTalk;
+        return aiChatTalk;
     }
 }
 

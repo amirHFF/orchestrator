@@ -32,10 +32,10 @@ public class BotIdentifierGenerator {
     private static final SecureRandom random = new SecureRandom();
 
     public static String generateRaw() {
-        String adj = pick(ADJECTIVES);
+//        String adj = pick(ADJECTIVES);
         String noun = pick(NOUNS);
         String rand = randomString(RAND_LEN);
-        return String.format("%s-%s-%s-%s", PREFIX, adj, noun, rand);
+        return String.format("%s-%s-%s", PREFIX, noun, rand);
     }
 
     private static String pick(String[] pool) {
