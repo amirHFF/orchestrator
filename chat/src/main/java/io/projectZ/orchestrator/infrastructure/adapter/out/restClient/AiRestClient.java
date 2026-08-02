@@ -15,7 +15,7 @@ import org.springframework.web.client.RestClient;
 @Component
 public class AiRestClient {
     private Logger logger = LogManager.getLogger(AiRestClient.class);
-    public RestClient restClient = RestClient.builder().baseUrl("http://localhost:8091").build();
+    public RestClient restClient = RestClient.builder().baseUrl("http://localhost:8070/orch-ai").build();
 
     public AiResponse sendQuestion(ChatTalkRequest chatTalkRequest) {
         AiResponse aiResponse = null;
