@@ -17,7 +17,7 @@ import javax.validation.Valid;
 
 @SecurityRequirement(name = "Bearer Authentication")
 @RestController
-@RequestMapping(path = "/chat/ai")
+@RequestMapping(path = "/ai")
 public class AiController {
     private final AIServiceImpl aiService;
 
@@ -25,7 +25,7 @@ public class AiController {
 		this.aiService = aiService;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(path = "/ask",method = RequestMethod.POST)
     public ResponseEntity<ChatTalkResponse> talkAi(@Valid @RequestBody AiMessageRequestDto aiMessageRequestDto) {
         String response = aiService.process(aiMessageRequestDto );
         return ResponseEntity.ok().body(new ChatTalkResponse(response));

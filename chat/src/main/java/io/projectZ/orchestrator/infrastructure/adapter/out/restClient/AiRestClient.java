@@ -20,7 +20,7 @@ public class AiRestClient {
     public AiResponse sendQuestion(ChatTalkRequest chatTalkRequest) {
         AiResponse aiResponse = null;
         try {
-            aiResponse = restClient.post().uri("/chat/ai")
+            aiResponse = restClient.post().uri("/ai/ask")
                     .header("accept", "application/json")
 //                    .header("Authorization", "Bearer "+accessToken)
                     .body(chatTalkRequest)

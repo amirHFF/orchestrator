@@ -71,6 +71,7 @@ public class ChatBotServiceImpl implements ChatBotService {
         botUser.setFirstname(chatBot.getName());
         botUser.setLastname("phoenix");
         botUser.setPassword("!23");
+        botUser.setEmail(botUser.getUsername().concat(".phoenix@gmail.com"));
         return botUser;
     }
 

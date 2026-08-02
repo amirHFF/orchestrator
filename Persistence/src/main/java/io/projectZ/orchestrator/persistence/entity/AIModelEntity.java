@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Table(name = "AI_MODEL2")
+@Table(name = "AI_MODEL")
 @Entity
 public class AIModelEntity extends BaseEntity {
 
@@ -32,5 +32,7 @@ public class AIModelEntity extends BaseEntity {
 	private Long usedToken;
 
 	private boolean isActive;
+
+	private Double temperature;
 
 }

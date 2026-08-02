@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @SecurityRequirement(name = "Bearer Authentication")
 @RestController
-@RequestMapping(path = "/ai-models")
+@RequestMapping(path = "/models")
 public class AiModelController {
 
 	private final AiModelService aiModelService;
@@ -36,6 +36,7 @@ public class AiModelController {
 		aiModel.setApiKey(aiModelRequest.apiToken());
 		aiModel.setUrl(aiModelRequest.url());
 		aiModel.setType(aiModelRequest.type());
+		aiModel.setTemperature(aiModelRequest.temperature());
 
 		aiModelService.save(aiModel);
 		return ResponseEntity.ok(true);
@@ -49,6 +50,7 @@ public class AiModelController {
 		aiModel.setApiKey(aiModel.getApiKey());
 		aiModel.setUrl(aiModel.getUrl());
 		aiModel.setType(aiModelRequest.type());
+		aiModel.setTemperature(aiModelRequest.temperature());
 
 		aiModelService.update(aiModel);
 		return ResponseEntity.ok(true);

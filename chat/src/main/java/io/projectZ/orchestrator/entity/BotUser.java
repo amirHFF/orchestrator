@@ -12,9 +12,5 @@ import lombok.Setter;
 @Setter
 public class BotUser extends UserBase{
     private String password;
-
-    public BotUser() {
-        setEmail("project-z.chat-bot@gmail.com");
-    }
 }
 

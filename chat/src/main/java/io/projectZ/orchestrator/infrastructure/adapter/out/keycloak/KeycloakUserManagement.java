@@ -47,6 +47,7 @@ public class KeycloakUserManagement implements UserManagementPort {
         keyClockUserDto.setEmail(userBaseDto.getEmail());
         keyClockUserDto.setFirstName(userBaseDto.getFirstname());
         keyClockUserDto.setLastName(userBaseDto.getLastname());
+        keyClockUserDto.setEnabled(userBaseDto.isEnabled());
         if (userBaseDto instanceof BotUser) {
             keyClockUserDto.setCredentials(List.of(new Credential("password", ((BotUser) userBaseDto).getPassword(), false)));
         }
