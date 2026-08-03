@@ -60,13 +60,13 @@ public class KeycloakAdminClientTemp {
         return keycloakTokenResponse;
     }
 
-    public KeycloakTokenResponse getChatBotAccessToken() {
+    public KeycloakTokenResponse getChatBotAccessToken(String userId) {
         MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
 
         form.add("grant_type", "password");
         form.add("client_id", "z-chat");
-        form.add("username", "chat-bot");
-        form.add("password", "123");
+        form.add("username", userId);
+        form.add("password", "!23");
         form.add("scope", "openid");
 
         KeycloakTokenResponse tokenResponse = null;

@@ -8,6 +8,7 @@ package io.projectZ.orchestrator.infrastructure.adapter.out.persistence.mapper;
 import io.projectZ.orchestrator.entity.ChatBot;
 import io.projectZ.orchestrator.persistence.entity.ChatBotEntity;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 

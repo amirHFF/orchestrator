@@ -19,8 +19,8 @@ public class KeycloakPasswordTokenRetriever implements KeycloakTokenGateway<Stri
     }
 
     @Override
-    public String retrieveToken(String s) {
-        KeycloakTokenResponse keycloakTokenResponse = keycloakAdminClientTemp.getChatBotAccessToken();
+    public String retrieveToken(String userId) {
+        KeycloakTokenResponse keycloakTokenResponse = keycloakAdminClientTemp.getChatBotAccessToken(userId);
 
         if (keycloakTokenResponse != null)
             return keycloakTokenResponse.getAccessToken();

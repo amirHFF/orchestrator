@@ -12,9 +12,12 @@ import lombok.Setter;
 @Setter
 public class ChatBotRequestDto {
     private String name;
+    private String displayName;
     private String ownerUserName;
     private String promptCode;
+    private String aiModel;
     private String scope;
-    private Boolean isEnabled;
+    private Boolean enabled;
+    private String description;
 }
 
