@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 public class Conversation{
 
-  private long id;
+  private Long id;
   private List<String> participants;
   private String lastMessage;
   private LocalDateTime lastMessageTime;

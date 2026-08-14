@@ -17,10 +17,13 @@ public class ChatBot {
     private String BotID;
     @NotNull(message = "name is mandatory for chatBot")
     private String name;
+    private String displayName;
+    private String aiModel;
     private String promptCode;
     private String ownerUserId;
     private String creatorUserId;
-    private boolean isEnabled = true;
+    private boolean enabled = false;
+    private String description;
     private String scope;
 }
 

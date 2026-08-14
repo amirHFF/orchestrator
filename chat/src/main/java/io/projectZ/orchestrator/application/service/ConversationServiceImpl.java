@@ -11,6 +11,7 @@ import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.KeycloakAd
 import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.UserRepresentation;
 import io.projectZ.orchestrator.infrastructure.config.SecurityConfig;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
@@ -19,6 +20,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class ConversationServiceImpl implements ConversationService {
+
+    //todo: postfix must be deleted from front point of view
     private final static String jidPostfix = "@zchat.ir";
     private final ConversationPort conversationPort;
     private final KeycloakAdminClientTemp keycloakAdminClientTemp;
@@ -43,13 +46,16 @@ public class ConversationServiceImpl implements ConversationService {
     }
 
     @Override
+//    @Transactional
     public void saveOrUpdate(Conversation conversation) {
         if (conversation != null) {
+            List<Conversation> loadedConversations = conversationPort.getConversations(conversation.getParticipants().get(0) , conversation.getParticipants().get(1));
+
             if (!conversation.getParticipants().isEmpty()) {
 
                 for (String participant : conversation.getParticipants()) {
-                    if (participant.contains(jidPostfix)){
-                        participant = participant.replace(jidPostfix , "");
+                    if (participant.contains(jidPostfix)) {
+                        participant = participant.replace(jidPostfix, "");
                     }
                     List<UserRepresentation> result = keycloakAdminClientTemp.findByUsername(participant, SecurityConfig.API_TOKEN);
                     if (result.size() == 0) {
@@ -67,14 +73,14 @@ public class ConversationServiceImpl implements ConversationService {
                                 .collect(Collectors.toList())
                 );
             }
-        }
-        Conversation loadedConversation = conversationPort.getById(conversation.getId());
-        if (loadedConversation == null) {
-            conversationPort.save(conversation);
-        } else if (!loadedConversation.getLastMessage().equals(conversation.getLastMessage())) {
-            loadedConversation.setLastMessage(conversation.getLastMessage());
-            conversationPort.update(loadedConversation);
+
+            if (loadedConversations ==null || loadedConversations.isEmpty()) {
+                conversationPort.save(conversation);
+            } else {
+                throw new RuntimeException("updating conversation already not implemented");
+            }
         }
     }
+
 }
 

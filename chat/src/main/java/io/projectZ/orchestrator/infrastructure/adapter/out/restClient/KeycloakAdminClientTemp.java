@@ -6,8 +6,10 @@ package io.projectZ.orchestrator.infrastructure.adapter.out.restClient;
 */
 
 import io.projectZ.orchestrator.infrastructure.adapter.out.restClient.dto.KeycloakTokenResponse;
+import jakarta.annotation.PostConstruct;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -20,8 +22,16 @@ import java.util.List;
 
 @Component
 public class KeycloakAdminClientTemp {
+
+    @Value("${restClient.keycloak.url}")
+    private String url;
     private final Logger logger = LogManager.getLogger(KeycloakAdminClientTemp.class);
-    private RestClient restClient = RestClient.builder().baseUrl("http://130.185.121.173:8081").build();
+    private RestClient restClient;
+
+    @PostConstruct
+    private void init(){
+        restClient = RestClient.builder().baseUrl(url).build();
+    }
 
     public List<UserRepresentation> findByUsername(
             String username,
@@ -60,13 +70,13 @@ public class KeycloakAdminClientTemp {
         return keycloakTokenResponse;
     }
 
-    public KeycloakTokenResponse getChatBotAccessToken() {
+    public KeycloakTokenResponse getChatBotAccessToken(String userId) {
         MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
 
         form.add("grant_type", "password");
         form.add("client_id", "z-chat");
-        form.add("username", "chat-bot");
-        form.add("password", "123");
+        form.add("username", userId);
+        form.add("password", "!23");
         form.add("scope", "openid");
 
         KeycloakTokenResponse tokenResponse = null;

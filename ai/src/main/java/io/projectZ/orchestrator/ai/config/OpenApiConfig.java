@@ -18,8 +18,6 @@ import java.util.Collections;
 @Configuration
 public class OpenApiConfig {
 
-	private final static String PHOENIX_ADDRESS = "https://130.185.121.173/";
-
 	@Bean
 	public OpenAPI getOpenApi() {
 		return new OpenAPI()
@@ -33,8 +31,7 @@ public class OpenApiConfig {
 								.type(SecurityScheme.Type.APIKEY)
 								.name("Authorization")))
 				.info(new Info()
-						.title("PHOENIX Api ")
-						.version("0.0.1"))
-				.servers(Collections.singletonList(new Server().url("http://localhost:8091")));
+						.title("PHOENIX AI api ")
+						.version("0.0.1"));
 	}
 }
