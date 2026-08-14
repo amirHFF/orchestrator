@@ -27,6 +27,7 @@ public class KeycloakAdminClient {
     private final Logger logger = LogManager.getLogger(KeycloakAdminClient.class);
     private RestClient restClient = RestClient.builder().baseUrl("http://130.185.121.173:8081").build();
 
+
     public List<UserRepresentation> findByUsername(
             String username,
             String adminAccessToken

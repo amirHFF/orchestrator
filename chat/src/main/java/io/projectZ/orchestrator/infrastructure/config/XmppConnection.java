@@ -15,6 +15,7 @@ import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
 import org.jivesoftware.smackx.ping.PingManager;
 import org.jxmpp.stringprep.XmppStringprepException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,13 @@ import java.util.Map;
 
 @Component
 public class XmppConnection {
+
+    @Value("${xmpp.connection.host}")
+    private String xmppHost;
+    @Value("${xmpp.connection.port}")
+    private Integer xmppHostPort;
+    @Value("${xmpp.connection.domainName}")
+    private String xmppDomainName;
     private Logger logger = LogManager.getLogger(XmppConnection.class);
     private static Map<String, AbstractXMPPConnection> establishedConnectionMap = new HashMap<>();
 
@@ -38,9 +46,9 @@ public class XmppConnection {
         if (establishedConnectionMap.get(username) == null || !establishedConnectionMap.get(username).isConnected()) {
             try {
                 config = XMPPTCPConnectionConfiguration.builder()
-                        .setXmppDomain("zchat.ir")
-                        .setHost("130.185.121.173")
-                        .setPort(5222)
+                        .setXmppDomain(xmppDomainName)
+                        .setHost(xmppHost)
+                        .setPort(xmppHostPort)
                         .setUsernameAndPassword(username, pass)
                         .setSecurityMode(XMPPTCPConnectionConfiguration.SecurityMode.disabled)
                         .build();
