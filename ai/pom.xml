@@ -100,4 +100,7 @@
 
     </dependencies>
 
+    <build>
+        <finalName>orch-ai</finalName>
+    </build>
 </project>
