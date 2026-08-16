@@ -67,7 +67,7 @@ public class ConversationRepository implements ConversationPort {
     }
 
     @Override
-    public List<Conversation> getConversations(String jid, String targetJid) {
+    public List<Conversation> getAllConversationsByJid(String jid) {
         List<ConversationEntity> dbResult = repository.findAllConversationsBySingleParticipant(jid);
         if (dbResult.isEmpty()) {
             return new ArrayList<>();
@@ -77,8 +77,8 @@ public class ConversationRepository implements ConversationPort {
     }
 
     @Override
-    public List<Conversation> getConversationByParticipants(List<String> participants) {
-        List<ConversationEntity> dbResult = repository.findAllConversationsByAllParticipant(participants);
+    public List<Conversation> getAllConversationsByParticipants(List<String> participants) {
+        List<ConversationEntity> dbResult = repository.findAllConversationsByMultipleParticipant(participants);
         if (dbResult.isEmpty()) {
             return new ArrayList<>();
         }

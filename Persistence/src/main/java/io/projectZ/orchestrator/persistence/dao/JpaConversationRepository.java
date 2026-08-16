@@ -17,7 +17,7 @@ public interface JpaConversationRepository extends JpaRepository<ConversationEnt
     @Query(value = """
     SELECT *
     FROM conversation
-    WHERE :participant = ANY(participants)
+    WHERE :participant = ANY (participants)
     """, nativeQuery = true)    List<ConversationEntity> findAllConversationsBySingleParticipant(@Param("participant") String participant);
     @Query(value = "select * from Conversation WHERE participants @> CAST(:participants AS varchar)",nativeQuery = true)
     List<ConversationEntity> findAllConversationsByAllParticipant(List<String> participants);
@@ -25,8 +25,8 @@ public interface JpaConversationRepository extends JpaRepository<ConversationEnt
     @Query(value = """
     SELECT *
     FROM conversation
-    WHERE :participant = ANY(participants)
-    """, nativeQuery = true)    List<ConversationEntity> findAllConversationsBySingleParticipant2(@Param("participant") List participants);
+    WHERE :participant = ALL(participants)
+    """, nativeQuery = true)    List<ConversationEntity> findAllConversationsByMultipleParticipant(@Param("participant") List participants);
 
 }
 
