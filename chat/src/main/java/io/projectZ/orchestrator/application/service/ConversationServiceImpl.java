@@ -40,7 +40,7 @@ public class ConversationServiceImpl implements ConversationService {
             jid = jid.concat(jidPostfix);
         }
 
-        List<Conversation> conversations = conversationPort.getConversations(jid, jid);
+        List<Conversation> conversations = conversationPort.getAllConversationsByJid(jid);
         conversations.sort(Comparator.comparing(Conversation::getLastMessageTime));
         return conversations;
     }
@@ -49,7 +49,7 @@ public class ConversationServiceImpl implements ConversationService {
 //    @Transactional
     public void saveOrUpdate(Conversation conversation) {
         if (conversation != null) {
-            List<Conversation> loadedConversations = conversationPort.getConversations(conversation.getParticipants().get(0) , conversation.getParticipants().get(1));
+            List<Conversation> loadedConversations = conversationPort.getAllConversationsByParticipants(conversation.getParticipants());
 
             if (!conversation.getParticipants().isEmpty()) {
 
