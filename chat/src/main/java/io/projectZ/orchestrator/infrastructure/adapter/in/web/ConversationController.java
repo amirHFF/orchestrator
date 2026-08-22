@@ -28,12 +28,12 @@ public class ConversationController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/{jid}")
     public ResponseEntity<List<ConversationResponse>> getAllConversation(@PathVariable String jid) {
-        List<Conversation> responseSet = conversationService.getAllConversationsByJid(jid);
+        List<Conversation> responseSet = conversationService.getAllConversationsByUsername(jid);
         return ResponseEntity.ok().body(responseSet.stream().map(ConversationControllerMapper.getInstance::ModelToResponse).collect(Collectors.toList()));
     }
     @PutMapping
     public ResponseEntity<Boolean> save(@RequestBody ConversationRequest conversationRequest ) {
-        conversationService.saveOrUpdate(ConversationControllerMapper.getInstance.requestToModel(conversationRequest) );
+        conversationService.save(ConversationControllerMapper.getInstance.requestToModel(conversationRequest) );
         return ResponseEntity.status(201).body(true);
     }
 }

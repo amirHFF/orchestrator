@@ -5,10 +5,14 @@ package io.projectZ.orchestrator.infrastructure.adapter.out.persistence.relation
   Created : 7/5/2026 - 6:22 PM
 */
 
+import io.github.amirHFF.exceptions.NotFoundException;
 import io.projectZ.orchestrator.application.port.ConversationPort;
 import io.projectZ.orchestrator.entity.Conversation;
 import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.mapper.ConversationMapper;
+import io.projectZ.orchestrator.infrastructure.config.advice.ChatErrorCode;
+import io.projectZ.orchestrator.persistence.dao.JpaChatProfileRepository;
 import io.projectZ.orchestrator.persistence.dao.JpaConversationRepository;
+import io.projectZ.orchestrator.persistence.entity.ChatProfileEntity;
 import io.projectZ.orchestrator.persistence.entity.ConversationEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,9 +30,11 @@ import java.util.stream.Collectors;
 public class ConversationRepository implements ConversationPort {
     private final Logger logger = LogManager.getLogger(ConversationMapper.class);
     private final JpaConversationRepository repository;
+    private final JpaChatProfileRepository chatProfileRepository;
 
-    public ConversationRepository(JpaConversationRepository repository) {
+    public ConversationRepository(JpaConversationRepository repository, JpaChatProfileRepository chatProfileRepository) {
         this.repository = repository;
+        this.chatProfileRepository = chatProfileRepository;
     }
 
     @Override
@@ -43,12 +49,20 @@ public class ConversationRepository implements ConversationPort {
     public void save(Conversation conversation) {
         logger.info("conversation saving ...");
         ConversationEntity entity = ConversationMapper.getInstance.modelToEntity(conversation);
+        for (String participant : conversation.getParticipants()) {
+            ChatProfileEntity chatProfileEntity = chatProfileRepository.findByUsername(participant);
+            if (chatProfileEntity == null){
+                logger.error("user name does not found in db {}",participant);
+                throw new NotFoundException(ChatErrorCode.USER_NAME_NOT_FOUND);
+            }
+            entity.getParticipants().add(chatProfileEntity);
+        }
         repository.save(entity);
         logger.info("conversation saved .");
 
     }
 
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
+    @Transactional
     @Override
     public void update(Conversation conversation) {
         logger.info(" conversation updating ...");
@@ -59,7 +73,7 @@ public class ConversationRepository implements ConversationPort {
 
         }
         else {
-            repository.findAllConversationsByAllParticipant(conversation.getParticipants());
+            repository.findByParticipants(conversation.getParticipants());
         }
         ConversationEntity entity = ConversationMapper.getInstance.modelToEntity(conversation);
         logger.info("conversation updating .");
@@ -67,8 +81,8 @@ public class ConversationRepository implements ConversationPort {
     }
 
     @Override
-    public List<Conversation> getAllConversationsByJid(String jid) {
-        List<ConversationEntity> dbResult = repository.findAllConversationsBySingleParticipant(jid);
+    public List<Conversation> getAllConversationsByUsername(String jid) {
+        List<ConversationEntity> dbResult = repository.findAllByUsername(jid);
         if (dbResult.isEmpty()) {
             return new ArrayList<>();
         }
@@ -78,7 +92,7 @@ public class ConversationRepository implements ConversationPort {
 
     @Override
     public List<Conversation> getAllConversationsByParticipants(List<String> participants) {
-        List<ConversationEntity> dbResult = repository.findAllConversationsByMultipleParticipant(participants);
+        List<ConversationEntity> dbResult = repository.findByParticipants(participants);
         if (dbResult.isEmpty()) {
             return new ArrayList<>();
         }

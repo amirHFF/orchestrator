@@ -9,8 +9,8 @@ package io.projectZ.orchestrator.persistence.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+ import java.util.HashSet;
+ import java.util.Set;
 
 @Getter
 @Setter
@@ -21,8 +21,24 @@ public class ConversationEntity extends BaseEntity {
     @SequenceGenerator(name = "conversationSeq" , sequenceName = "CONVERSATION_SEQ" , allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "conversationSeq")
     private long id;
-    @Column(columnDefinition = "text[]")
-    private List<String> participants = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "conversation_participant",
+            joinColumns = @JoinColumn(name = "conversation_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"),
+            uniqueConstraints = {
+                    @UniqueConstraint(
+                            name = "uk_conversation_participant",
+                            columnNames = {"conversation_id", "user_id"}
+                    )
+            }
+    )
+    private Set<ChatProfileEntity> participants = new HashSet<>();
+
+    @Enumerated(EnumType.STRING)
+    private ConversationTypeEnum conversationType;
+
     @Column(name = "LAST_MESSAGE" )
     private String lastMessage;
 

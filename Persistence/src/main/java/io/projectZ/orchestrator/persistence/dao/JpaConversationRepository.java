@@ -14,19 +14,20 @@ import java.util.List;
 
 public interface JpaConversationRepository extends JpaRepository<ConversationEntity , Long> {
 
-    @Query(value = """
-    SELECT *
-    FROM conversation
-    WHERE :participant = ANY (participants)
-    """, nativeQuery = true)    List<ConversationEntity> findAllConversationsBySingleParticipant(@Param("participant") String participant);
-    @Query(value = "select * from Conversation WHERE participants @> CAST(:participants AS varchar)",nativeQuery = true)
-    List<ConversationEntity> findAllConversationsByAllParticipant(List<String> participants);
 
-    @Query(value = """
-    SELECT *
-    FROM conversation
-    WHERE :participant = ALL(participants)
-    """, nativeQuery = true)    List<ConversationEntity> findAllConversationsByMultipleParticipant(@Param("participant") List participants);
+    @Query(value = "select distinct e from ConversationEntity e join e.participants cp where cp.username = :username")
+    List<ConversationEntity> findAllByUsername(String username);
+
+    @Query("""
+    SELECT c FROM ConversationEntity c
+    WHERE c.conversationType = 'CHAT'
+      AND (
+          SELECT COUNT(DISTINCT p.username)
+          FROM c.participants p
+          WHERE p.username IN :participantParams
+      ) = 2
+    """)
+    List<ConversationEntity> findByParticipants(@Param("participantParams") List<String> participantParams);
 
 }
 
