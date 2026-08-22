@@ -25,7 +25,7 @@ import java.util.List;
 @Component
 public class KeycloakAdminClient {
     private final Logger logger = LogManager.getLogger(KeycloakAdminClient.class);
-    private RestClient restClient = RestClient.builder().baseUrl("http://130.185.121.173:8081").build();
+    private RestClient restClient = RestClient.builder().baseUrl("https://auth.simorq.top").build();
 
 
     public List<UserRepresentation> findByUsername(
@@ -63,6 +63,22 @@ public class KeycloakAdminClient {
                 .body(KeycloakTokenResponse.class);
 
         return keycloakTokenResponse;
+    }
+
+
+    public List<UserRepresentation> getAllUser(Integer first , Integer max , String adminAccessToken){
+        List<UserRepresentation> userRepresentations = restClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("/admin/realms/{realm}/users")
+                        .queryParam("first", first)
+                        .queryParam("max", max)
+                        .build("project-z"))
+                .header(HttpHeaders.AUTHORIZATION,
+                        "Bearer " + adminAccessToken)
+                .retrieve()
+                .body(new ParameterizedTypeReference<List<UserRepresentation>>() {
+                });
+        return userRepresentations;
     }
 
     public KeycloakTokenResponse getChatBotAccessToken() {

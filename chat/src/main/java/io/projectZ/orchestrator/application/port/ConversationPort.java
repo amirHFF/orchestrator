@@ -14,7 +14,7 @@ public interface ConversationPort {
     Conversation getById(long id);
     void save(Conversation conversation);
     void update(Conversation conversation);
-    List<Conversation> getAllConversationsByJid(String jid);
+    List<Conversation> getAllConversationsByUsername(String jid);
     List<Conversation> getAllConversationsByParticipants(List<String> jid);
 
 }

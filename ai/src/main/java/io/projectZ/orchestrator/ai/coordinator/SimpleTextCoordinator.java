@@ -28,12 +28,6 @@ public class SimpleTextCoordinator implements AiCoordinator<String> {
         this.modelFactory = modelFactory;
         this.promptEngine = promptEngine;
     }
-
-    //    public SimpleTextCoordinator(ChatClient.Builder chatClientBuilder) {
-//        this.chatClientBuilder = chatClientBuilder;
-//        chatClient = chatClientBuilder.defaultSystem("you are a english tutor and a bit drunk.txt , so your response have sometime dirty funny . your student are persian so sometime for better learning you must switch to persian ")
-//                .build();
-//    }
     @Override
     public String processMessage(AiProxyModel proxy, String message) {
 
