@@ -34,7 +34,7 @@ public class ChatBotMessageHandler implements ChatMessageHandler{
         logger.info("messsage received to chat bot service id: {}",chatMessage.getId());
         ChatBot chatBot = chatBotService.get(chatMessage.getTo());
 
-        AiChatTalk aiChatTalk = aiPort.ask(new ChatTalk(chatMessage.getTo() , chatMessage.getFrom() ,"gapgpt-qwen-3.5" , chatBot.getPromptCode(),chatMessage.getContent()));
+        AiChatTalk aiChatTalk = aiPort.ask(new ChatTalk(chatMessage.getTo() , chatMessage.getFrom() ,chatBot.getAiModel() , chatBot.getPromptCode(),chatMessage.getContent()));
         ChatMessage aiResponseChatMessage = new ChatMessage(aiChatTalk.getContent(), chatMessage.getTo() , chatMessage.getFrom());
         sendMessage(aiResponseChatMessage);
     }

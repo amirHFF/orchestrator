@@ -13,6 +13,8 @@ import java.util.List;
 public interface ChatProfilePort {
     ChatProfile getByUsername(String username);
     void save(ChatProfile chatProfile);
+    void update(ChatProfile chatProfile);
+    void remove(String username);
     void setDisplayName(String displayName , String username);
     List<ChatProfile> fetchAllUser();
 }

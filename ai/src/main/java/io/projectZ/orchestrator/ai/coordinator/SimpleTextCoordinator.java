@@ -28,15 +28,13 @@ public class SimpleTextCoordinator implements AiCoordinator<String> {
         this.modelFactory = modelFactory;
         this.promptEngine = promptEngine;
     }
+
     @Override
     public String processMessage(AiProxyModel proxy, String message) {
 
         chatClient = modelFactory.createChatClient(proxy.getModel());
-        Prompt prompt = new Prompt(List.of(new SystemMessage("You are a helpful teacher. " +
-                "you teach english , but talk in farsi ,your main purpose is ensuring good learning .")));
 
-        if (message.length() > 10)
-            prompt = promptEngine.render(proxy.getPrompt(), null);
+        Prompt prompt = promptEngine.render(proxy.getPrompt(), null);
 
 
         String response = chatClient.prompt()
@@ -45,6 +43,7 @@ public class SimpleTextCoordinator implements AiCoordinator<String> {
                 .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, proxy.getRealUsername()))
                 .call()
                 .content();
+
         return response;
     }
 }
