@@ -5,9 +5,11 @@ package io.projectZ.orchestrator.infrastructure.adapter.out.persistence.relation
   Created : 8/20/2026 - 1:06 AM
 */
 
+import io.github.amirHFF.exceptions.BadInputException;
 import io.projectZ.orchestrator.application.port.ChatProfilePort;
 import io.projectZ.orchestrator.entity.ChatProfile;
 import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.mapper.ChatProfileMapper;
+import io.projectZ.orchestrator.infrastructure.config.advice.ChatErrorCode;
 import io.projectZ.orchestrator.persistence.dao.JpaChatProfileRepository;
 import io.projectZ.orchestrator.persistence.entity.ChatProfileEntity;
 import org.springframework.stereotype.Repository;
@@ -35,6 +37,29 @@ public class ChatProfileRepository implements ChatProfilePort {
     @Override
     public void save(ChatProfile chatProfile) {
         repository.save(ChatProfileMapper.getInstance.modelToEntity(chatProfile));
+    }
+
+    @Override
+    public void update(ChatProfile chatProfile) {
+        if (chatProfile.getUsername() == null){
+            throw new BadInputException(ChatErrorCode.USER_NAME_IS_MANDATORY);
+        }
+        ChatProfileEntity chatProfileEntity = repository.findByUsername(chatProfile.getUsername());
+        chatProfileEntity.setFirstName(chatProfile.getFirstName());
+        chatProfileEntity.setLastname(chatProfile.getLastname());
+        chatProfileEntity.setBirthDate(chatProfile.getBirthDate());
+        repository.save(chatProfileEntity);
+    }
+
+    @Override
+    public void remove(String username) {
+        if (username == null){
+            throw new BadInputException(ChatErrorCode.USER_NAME_IS_MANDATORY);
+        }
+
+        ChatProfileEntity loadedChatProfile = repository.findByUsername(username);
+        repository.delete(loadedChatProfile);
+
     }
 
     @Override
