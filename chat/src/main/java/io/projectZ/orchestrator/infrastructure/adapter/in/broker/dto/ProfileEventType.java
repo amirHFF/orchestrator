@@ -5,7 +5,7 @@ package io.projectZ.orchestrator.infrastructure.adapter.in.broker.dto;
   Created : 7/12/2026 - 11:24 PM
 */
 
-public enum EventType {
+public enum ProfileEventType {
 
     LOGIN,
     LOGIN_ERROR,

@@ -8,17 +8,17 @@ package io.projectZ.orchestrator.infrastructure.adapter.in.broker.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserEventDto extends EventDTO{
+public class UserProfileEventDto extends ProfileEventDto {
     private String userid;
-    private EventType eventType;
+    private ProfileEventType profileEventType;
     private String clientId;
 
-    public EventType getEventType() {
-        return eventType;
+    public ProfileEventType getEventType() {
+        return profileEventType;
     }
 
-    public void setEventType(EventType eventType) {
-        this.eventType = eventType;
+    public void setEventType(ProfileEventType profileEventType) {
+        this.profileEventType = profileEventType;
     }
 
     public String getClientId() {
