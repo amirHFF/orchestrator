@@ -6,7 +6,7 @@ package io.projectZ.orchestrator.infrastructure.adapter.in.broker.dto;
 */
 
 
-public class AdminEventDto extends EventDTO{
+public class AdminProfileEventDto extends ProfileEventDto {
 
     private String resourceType;
     private String resourceId;

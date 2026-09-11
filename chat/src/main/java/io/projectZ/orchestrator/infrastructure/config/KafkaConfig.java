@@ -5,10 +5,6 @@ package io.projectZ.orchestrator.infrastructure.config;
   Created : 8/31/2026 - 2:03 AM
 */
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.projectZ.orchestrator.infrastructure.adapter.in.broker.dto.EventDTO;
-import io.projectZ.orchestrator.infrastructure.adapter.in.broker.dto.UserEventDto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.listener.DefaultErrorHandler;
 import org.springframework.kafka.support.serializer.DeserializationException;
-import org.springframework.stereotype.Component;
 import org.springframework.util.backoff.FixedBackOff;
 
 @EnableKafka
