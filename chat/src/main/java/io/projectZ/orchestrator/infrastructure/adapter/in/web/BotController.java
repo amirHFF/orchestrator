@@ -48,8 +48,8 @@ public class BotController {
     }
 
     @GetMapping(path = "/list")
-    public ResponseEntity<List<ChatBotResponseDto>> getAll(){
-        List<ChatBot> chatBots = chatBotService.getAll();
+    public ResponseEntity<List<ChatBotResponseDto>> getAll(@RequestParam(required = false) Boolean enabled){
+        List<ChatBot> chatBots = chatBotService.getAll(enabled);
         List<ChatBotResponseDto> botResponse = chatBots.stream().map(ChatBotControllerMapper.getInstance::ModelToResponse).collect(Collectors.toList());
         return ResponseEntity.ok(botResponse);
     }

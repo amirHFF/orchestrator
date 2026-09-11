@@ -25,7 +25,7 @@ public class AiModelController {
 	@GetMapping
 	public ResponseEntity<List<AiModelResponse>> getAllModels() {
 		List<AIModel> aiModelResponses = aiModelService.getAllModels();
-		return ResponseEntity.ok(aiModelResponses.stream().map(x -> new AiModelResponse(x.getName() , x.getTitle(), x.getApiKey() , x.getUrl())).collect(Collectors.toList()));
+		return ResponseEntity.ok(aiModelResponses.stream().map(x -> new AiModelResponse(x.getName() , x.getTitle(), x.getTemperature() , x.getUrl())).collect(Collectors.toList()));
 	}
 	@PostMapping
 	public ResponseEntity<Boolean> create(@RequestBody AiModelRequest aiModelRequest) {
