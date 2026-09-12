@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ChatBotService {
     ChatBot get(String BotID);
-    List<ChatBot> getAll();
+    List<ChatBot> getAll(Boolean enabled);
     ChatBot save(ChatBot chatBot);
     ChatBot update(ChatBot chatBot);
     void start(String BotID);

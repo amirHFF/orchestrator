@@ -12,6 +12,6 @@ import java.util.List;
 
 public interface JpaChatBotRepository extends JpaRepository<ChatBotEntity , Long> {
     ChatBotEntity findByBotID(String botID);
-    List<ChatBotEntity> findAllByEnabled(boolean enable);
+    List<ChatBotEntity> findAllByEnabledOrderByInsertTimeDesc(boolean enable);
 }
 

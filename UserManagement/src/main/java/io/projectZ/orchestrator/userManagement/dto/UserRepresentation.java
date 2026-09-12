@@ -7,6 +7,7 @@ package io.projectZ.orchestrator.userManagement.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +17,7 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 public class UserRepresentation {
 
   private String id;

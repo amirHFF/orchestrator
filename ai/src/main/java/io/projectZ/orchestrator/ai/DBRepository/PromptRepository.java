@@ -12,6 +12,8 @@ import io.projectZ.orchestrator.persistence.entity.PromptEntity;
 import io.projectZ.orchestrator.ai.model.PromptModel;
 import io.projectZ.orchestrator.persistence.entity.PromptTypeEnum;
 import io.projectZ.orchestrator.ai.prompt.repo.PromptPersistencePort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,6 +64,7 @@ public class PromptRepository implements PromptPersistencePort {
             loaded.setContent(promptModel.getContent());
             loaded.setTitle(promptModel.getTitle());
             loaded.setPromptType(PromptTypeEnum.valueOf(promptModel.getPromptType().name()));
+            jpaRepository.save(loaded);
         } else {
             throw new RuntimeException("prompt not found");
         }
@@ -75,6 +78,20 @@ public class PromptRepository implements PromptPersistencePort {
         } else {
             throw new RuntimeException("prompt not found");
         }
+    }
+
+    @Override
+    public Page<PromptModel> search(String code, String title, Pageable pageable) {
+
+        if (code != null && code.isEmpty())
+            code = null;
+        if (title != null && title.isEmpty())
+            title = null;
+
+        Page<PromptEntity> result = jpaRepository.search(code, title, pageable);
+
+
+        return result.map(PromptMapper.getInstance::entityToModel);
     }
 
 }

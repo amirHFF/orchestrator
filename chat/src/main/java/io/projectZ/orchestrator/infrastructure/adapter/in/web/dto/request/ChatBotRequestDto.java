@@ -12,6 +12,7 @@ import lombok.Setter;
 @Setter
 public class ChatBotRequestDto {
     private String name;
+    private String BotID;
     private String displayName;
     private String ownerUserName;
     private String promptCode;

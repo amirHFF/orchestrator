@@ -12,6 +12,9 @@ import io.projectZ.orchestrator.persistence.entity.PromptTypeEnum;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
@@ -53,6 +56,19 @@ public class PromptServiceImpl implements PromptService {
                 .map(promptType -> PromptTypeEnum.valueOf(promptType.name())).collect(Collectors.toList()));
 
         return promptModelList;
+    }
+
+    @Override
+    public Page<PromptModel> search(String title, String code, Pageable pageable) {
+
+        if (pageable == null){
+            pageable = PageRequest.of(0 , 20);
+        }
+        if (pageable.getPageSize()>20)
+            pageable = PageRequest.of(pageable.getPageNumber() , 20);
+
+        Page<PromptModel> promptModelPage = persistencePort.search(code , title , pageable);
+        return promptModelPage;
     }
 }
 

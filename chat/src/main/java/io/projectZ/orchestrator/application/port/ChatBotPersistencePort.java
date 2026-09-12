@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ChatBotPersistencePort {
     ChatBot getByBotID(String BotID);
-    List<ChatBot> getAll();
+    List<ChatBot> getAll(Boolean enabled);
     void save(ChatBot chatBot);
     void update(ChatBot chatBot);
 }

@@ -48,8 +48,8 @@ public class ChatBotServiceImpl implements ChatBotService {
     }
 
     @Override
-    public List<ChatBot> getAll() {
-        return persistencePort.getAll();
+    public List<ChatBot> getAll(Boolean enabled) {
+        return persistencePort.getAll(enabled);
     }
 
     @Override

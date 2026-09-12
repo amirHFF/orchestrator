@@ -7,6 +7,8 @@ package io.projectZ.orchestrator.ai.prompt.repo;
 
 import io.projectZ.orchestrator.ai.model.PromptModel;
 import io.projectZ.orchestrator.persistence.entity.PromptTypeEnum;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -17,5 +19,6 @@ public interface PromptPersistencePort {
     void save(PromptModel promptModel);
     void update(PromptModel promptModel);
     void remove(String code);
+    Page<PromptModel> search(String code , String title , Pageable pageable);
 }
 
