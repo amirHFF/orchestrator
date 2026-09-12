@@ -31,12 +31,12 @@ public class AdminEventHandler implements EventHandler {
             }
         }
     }
-    private ChatProfile mapAdminEventToChatProfile(AdminProfileEventDto userEventDto){
+    private ChatProfile mapAdminEventToChatProfile(AdminProfileEventDto adminEventDto){
         ChatProfile chatProfile = new ChatProfile();
-        chatProfile.setUsername(userEventDto.getDetails().get("username"));
-        chatProfile.setFirstName(userEventDto.getDetails().get("first_name"));
-        chatProfile.setLastname(userEventDto.getDetails().get("last_name"));
-        chatProfile.setKeycloakId(userEventDto.getId());
+        chatProfile.setUsername(adminEventDto.getRepresentation().getUsername());
+        chatProfile.setFirstName(adminEventDto.getRepresentation().getFirstName());
+        chatProfile.setLastname(adminEventDto.getRepresentation().getLastName());
+        chatProfile.setKeycloakId(adminEventDto.getId());
 
 //        chatProfile.setBirthDate(userEventDto.getDetails().get("lastname"));
         return chatProfile;
