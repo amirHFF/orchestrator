@@ -1,0 +1,50 @@
+name: Manual Build & Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      module:
+        description: "Select module to deploy"
+        required: true
+        type: choice
+        options:
+          - ai
+          - chat
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Build selected module
+        run: |
+          mvn -B -pl ${{ github.event.inputs.module }} -am clean install
+
+      - name: Deploy WAR
+        run: |
+          MODULE="${{ github.event.inputs.module }}"
+
+          if [ "$MODULE" = "ai" ]; then
+            WAR="ai/target/orch-ai.war"
+          else
+            WAR="chat/target/orch-chat.war"
+          fi
+
+          if [ ! -f "$WAR" ]; then
+            echo "WAR file not found!"
+            exit 1
+          fi
+
+          cp "$WAR" /home/debian/webapps/webapps/
+
+          echo "Deployment completed."
+          ls -lh /home/debian/webapps/webapps
