@@ -1,4 +1,4 @@
-package io.projectZ.orchestrator.infrastructure.adapter.in.broker.userEvent;
+package io.projectZ.orchestrator.infrastructure.adapter.in.broker.kafka;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

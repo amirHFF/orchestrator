@@ -1,4 +1,4 @@
-package io.projectZ.orchestrator.infrastructure.adapter.in.broker.userEvent;
+package io.projectZ.orchestrator.infrastructure.adapter.in.broker.kafka;
 /*
   Project : Orchestrator
   Author  : AmirHFF

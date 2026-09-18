@@ -15,7 +15,7 @@ import java.util.Set;
 
 public interface ConversationService {
     List<Conversation> getAllConversationsByUsername(String username);
-    void  save(Conversation conversation);
+    Conversation  save(Conversation conversation);
     void  update(Conversation conversation);
 
 }

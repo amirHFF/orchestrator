@@ -6,13 +6,12 @@ package io.projectZ.orchestrator.ai.DBRepository.mapper;
 */
 
 import io.projectZ.orchestrator.ai.model.PromptType;
-import io.projectZ.orchestrator.persistence.entity.PromptEntity;
+import io.projectZ.orchestrator.persistence.relational.entity.PromptEntity;
 import io.projectZ.orchestrator.ai.model.PromptModel;
-import io.projectZ.orchestrator.persistence.entity.PromptTypeEnum;
+import io.projectZ.orchestrator.persistence.relational.entity.PromptTypeEnum;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
 @Mapper

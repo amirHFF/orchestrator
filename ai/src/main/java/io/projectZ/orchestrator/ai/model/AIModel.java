@@ -1,6 +1,6 @@
 package io.projectZ.orchestrator.ai.model;
 
-import io.projectZ.orchestrator.persistence.entity.AiModelType;
+import io.projectZ.orchestrator.persistence.relational.entity.AiModelType;
 import lombok.Getter;
 import lombok.Setter;
 

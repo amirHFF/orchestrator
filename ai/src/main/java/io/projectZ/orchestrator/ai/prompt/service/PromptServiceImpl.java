@@ -8,7 +8,7 @@ package io.projectZ.orchestrator.ai.prompt.service;
 import io.projectZ.orchestrator.ai.model.PromptModel;
 import io.projectZ.orchestrator.ai.model.PromptType;
 import io.projectZ.orchestrator.ai.prompt.repo.PromptPersistencePort;
-import io.projectZ.orchestrator.persistence.entity.PromptTypeEnum;
+import io.projectZ.orchestrator.persistence.relational.entity.PromptTypeEnum;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -15,6 +15,7 @@ import java.util.List;
 @Setter
 public class ConversationResponse {
     private List<String> participants;
+    private String title;
     private String lastMessage;
     private LocalDateTime lastMessageTime;
 }

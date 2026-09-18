@@ -32,9 +32,9 @@ public class ConversationController {
         return ResponseEntity.ok().body(responseSet.stream().map(ConversationControllerMapper.getInstance::ModelToResponse).collect(Collectors.toList()));
     }
     @PutMapping
-    public ResponseEntity<Boolean> save(@RequestBody ConversationRequest conversationRequest ) {
-        conversationService.save(ConversationControllerMapper.getInstance.requestToModel(conversationRequest) );
-        return ResponseEntity.status(201).body(true);
+    public ResponseEntity<ConversationResponse> save(@RequestBody ConversationRequest conversationRequest ) {
+        Conversation newConversation = conversationService.save(ConversationControllerMapper.getInstance.requestToModel(conversationRequest) );
+        return ResponseEntity.status(201).body(ConversationControllerMapper.getInstance.ModelToResponse(newConversation));
     }
 }
 

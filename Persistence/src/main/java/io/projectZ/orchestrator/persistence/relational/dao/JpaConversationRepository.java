@@ -1,18 +1,18 @@
-package io.projectZ.orchestrator.persistence.dao;
+package io.projectZ.orchestrator.persistence.relational.dao;
 /*
   Project : Orchestrator
   Author  : AmirHFF
   Created : 7/5/2026 - 6:35 PM
 */
 
-import io.projectZ.orchestrator.persistence.entity.ConversationEntity;
+import io.projectZ.orchestrator.persistence.relational.entity.ConversationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface JpaConversationRepository extends JpaRepository<ConversationEntity , Long> {
+public interface JpaConversationRepository extends JpaRepository<ConversationEntity, Long> {
 
 
     @Query(value = "select distinct e from ConversationEntity e join e.participants cp where cp.username = :username")

@@ -5,6 +5,8 @@ package io.projectZ.orchestrator.infrastructure.config;
   Created : 7/16/2026 - 10:40 AM
 */
 
+import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.noRelational.ChatBotCacheDTO;
+import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.noRelational.ChatBotCacheGateway;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jivesoftware.smack.AbstractXMPPConnection;
@@ -24,6 +26,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 //todo : scope must be refined
 
@@ -37,7 +40,12 @@ public class XmppConnection {
     @Value("${xmpp.connection.domainName}")
     private String xmppDomainName;
     private Logger logger = LogManager.getLogger(XmppConnection.class);
-    private static Map<String, AbstractXMPPConnection> establishedConnectionMap = new HashMap<>();
+    private static Map<String, AbstractXMPPConnection> establishedConnectionMap = new ConcurrentHashMap<>();
+    private final ChatBotCacheGateway cacheGateway;
+
+    public XmppConnection(ChatBotCacheGateway cacheGateway) {
+        this.cacheGateway = cacheGateway;
+    }
 
     public synchronized AbstractXMPPConnection connection(String username , String pass) {
         logger.info("xmpp connecting for {} ..." , username);
@@ -71,7 +79,9 @@ public class XmppConnection {
                 logger.info("xmpp user {} successfully connected" , username);
                 connection.login();
                 logger.info("xmpp {} Logged In" , username);
+
                 establishedConnectionMap.put(username , connection);
+                cacheGateway.established(connection.getUser().getLocalpartOrThrow().toString());
 
             } catch (SmackException e) {
                 throw new RuntimeException(e);
@@ -86,6 +96,17 @@ public class XmppConnection {
             return connection;
         } else
             return establishedConnectionMap.get(username);
+    }
+
+    public void closeConnection(String username){
+        AbstractXMPPConnection connection = establishedConnectionMap.get(username);
+        if (connection !=null){
+            connection.disconnect();
+            logger.info("connection closed");
+
+            cacheGateway.saveOrUpdate(new ChatBotCacheDTO(username , false , false));
+            establishedConnectionMap.remove(username);
+        }
     }
 
     public static AbstractXMPPConnection getConnection(String username) {

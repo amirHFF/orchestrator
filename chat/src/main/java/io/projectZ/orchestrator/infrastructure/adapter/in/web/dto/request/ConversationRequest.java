@@ -5,6 +5,7 @@ package io.projectZ.orchestrator.infrastructure.adapter.in.web.dto.request;
   Created : 7/5/2026 - 7:03 PM
 */
 
+import io.projectZ.orchestrator.persistence.relational.entity.ConversationTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,5 +17,6 @@ import java.util.List;
 public class ConversationRequest {
     private List<String> participants;
     private String lastMessage;
+    private ConversationTypeEnum conversationType;
 }
 

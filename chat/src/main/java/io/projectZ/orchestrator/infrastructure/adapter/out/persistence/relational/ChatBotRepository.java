@@ -6,9 +6,9 @@ package io.projectZ.orchestrator.infrastructure.adapter.out.persistence.relation
 */
 
 import io.projectZ.orchestrator.application.port.ChatBotPersistencePort;
-import io.projectZ.orchestrator.persistence.dao.JpaChatBotRepository;
+import io.projectZ.orchestrator.persistence.relational.dao.JpaChatBotRepository;
 import io.projectZ.orchestrator.entity.ChatBot;
-import io.projectZ.orchestrator.persistence.entity.ChatBotEntity;
+import io.projectZ.orchestrator.persistence.relational.entity.ChatBotEntity;
 import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.mapper.ChatBotMapper;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;

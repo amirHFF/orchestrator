@@ -6,13 +6,17 @@ package io.projectZ.orchestrator.application.service;
 */
 
 import io.projectZ.orchestrator.entity.ChatBot;
+import io.projectZ.orchestrator.entity.ChatBotStatus;
+import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.noRelational.ChatBotCacheDTO;
 
 import java.util.List;
 
 public interface ChatBotService {
     ChatBot get(String BotID);
+    ChatBotStatus getStatus(String BotID);
     List<ChatBot> getAll(Boolean enabled);
     ChatBot save(ChatBot chatBot);
     ChatBot update(ChatBot chatBot);
     void start(String BotID);
+    void stop(String BotID);
 }
