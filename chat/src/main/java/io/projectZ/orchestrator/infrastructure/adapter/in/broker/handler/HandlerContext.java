@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 
 public class HandlerContext {
     private EventHandler eventHandler;
-    public void setStrategy(EventHandler handler){
+
+    public void setStrategy(EventHandler handler) {
         eventHandler = handler;
     }
-    public void executeHandle(EventDTO eventDTO){
-        if (eventDTO instanceof UserProfileEventDto userEventDto) {
-            eventHandler.handle(userEventDto);
-        }
+
+    public void executeHandle(EventDTO eventDTO) {
+        eventHandler.handle(eventDTO);
     }
 }
 

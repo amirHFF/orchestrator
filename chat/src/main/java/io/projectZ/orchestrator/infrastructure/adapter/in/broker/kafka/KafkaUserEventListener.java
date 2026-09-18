@@ -34,7 +34,7 @@ public class KafkaUserEventListener {
 
     private final Logger logger = LogManager.getLogger(KafkaUserEventListener.class);
 
-//    @KafkaListener(topics = "user-sync-events", groupId = "orch-core")
+    @KafkaListener(topics = "user-sync-events", groupId = "orch-core")
     public void consume(ProfileEventDto profileEventDTO, @Header(KafkaHeaders.RECEIVED_PARTITION) int partition, @Header(KafkaHeaders.OFFSET) long offset) {
         logger.info("Event received from partition {} offset {} -> {}", partition, offset, profileEventDTO.toString());
 
