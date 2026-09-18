@@ -6,7 +6,7 @@ package io.projectZ.orchestrator.ai.prompt.repo;
 */
 
 import io.projectZ.orchestrator.ai.model.PromptModel;
-import io.projectZ.orchestrator.persistence.entity.PromptTypeEnum;
+import io.projectZ.orchestrator.persistence.relational.entity.PromptTypeEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

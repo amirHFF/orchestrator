@@ -6,8 +6,8 @@ package io.projectZ.orchestrator.infrastructure.adapter.out.persistence.mapper;
 */
 
 import io.projectZ.orchestrator.entity.Conversation;
-import io.projectZ.orchestrator.persistence.entity.ChatProfileEntity;
-import io.projectZ.orchestrator.persistence.entity.ConversationEntity;
+import io.projectZ.orchestrator.persistence.relational.entity.ChatProfileEntity;
+import io.projectZ.orchestrator.persistence.relational.entity.ConversationEntity;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 

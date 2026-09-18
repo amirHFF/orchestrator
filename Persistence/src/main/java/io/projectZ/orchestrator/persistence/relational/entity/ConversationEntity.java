@@ -1,4 +1,4 @@
-package io.projectZ.orchestrator.persistence.entity;
+package io.projectZ.orchestrator.persistence.relational.entity;
 /*
   Project : Orchestrator
   Author  : AmirHFF
@@ -35,6 +35,8 @@ public class ConversationEntity extends BaseEntity {
             }
     )
     private Set<ChatProfileEntity> participants = new HashSet<>();
+
+    private String title;
 
     @Enumerated(EnumType.STRING)
     private ConversationTypeEnum conversationType;

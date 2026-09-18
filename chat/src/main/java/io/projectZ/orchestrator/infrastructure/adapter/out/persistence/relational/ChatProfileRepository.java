@@ -10,8 +10,8 @@ import io.projectZ.orchestrator.application.port.ChatProfilePort;
 import io.projectZ.orchestrator.entity.ChatProfile;
 import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.mapper.ChatProfileMapper;
 import io.projectZ.orchestrator.infrastructure.config.advice.ChatErrorCode;
-import io.projectZ.orchestrator.persistence.dao.JpaChatProfileRepository;
-import io.projectZ.orchestrator.persistence.entity.ChatProfileEntity;
+import io.projectZ.orchestrator.persistence.relational.dao.JpaChatProfileRepository;
+import io.projectZ.orchestrator.persistence.relational.entity.ChatProfileEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

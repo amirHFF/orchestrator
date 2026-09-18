@@ -6,14 +6,23 @@ package io.projectZ.orchestrator.infrastructure.adapter.in.web.mapper;
 */
 
 import io.projectZ.orchestrator.entity.ChatBot;
+import io.projectZ.orchestrator.entity.ChatBotStatus;
 import io.projectZ.orchestrator.infrastructure.adapter.in.web.dto.request.ChatBotRequestDto;
 import io.projectZ.orchestrator.infrastructure.adapter.in.web.dto.response.ChatBotResponseDto;
+import io.projectZ.orchestrator.infrastructure.adapter.in.web.dto.response.ChatBotStatusResponseDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
+
+import java.util.Set;
 
 @Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ChatBotControllerMapper extends BaseControllerMapper<ChatBot, ChatBotResponseDto, ChatBotRequestDto> {
     ChatBotControllerMapper getInstance = Mappers.getMapper(ChatBotControllerMapper.class);
+
+    ChatBotStatusResponseDto mapStatusToResponse(ChatBotStatus chatBotStatus);
+
 }
 

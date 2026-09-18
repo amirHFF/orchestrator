@@ -7,9 +7,12 @@ package io.projectZ.orchestrator.infrastructure.adapter.in.web;
 
 import io.projectZ.orchestrator.application.service.ChatBotService;
 import io.projectZ.orchestrator.entity.ChatBot;
+import io.projectZ.orchestrator.entity.ChatBotStatus;
 import io.projectZ.orchestrator.infrastructure.adapter.in.web.dto.request.ChatBotRequestDto;
 import io.projectZ.orchestrator.infrastructure.adapter.in.web.dto.response.ChatBotResponseDto;
+import io.projectZ.orchestrator.infrastructure.adapter.in.web.dto.response.ChatBotStatusResponseDto;
 import io.projectZ.orchestrator.infrastructure.adapter.in.web.mapper.ChatBotControllerMapper;
+import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.noRelational.ChatBotCacheDTO;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +49,11 @@ public class BotController {
         ChatBot chatBot = chatBotService.get(botID);
         return ResponseEntity.ok(ChatBotControllerMapper.getInstance.ModelToResponse(chatBot));
     }
+    @GetMapping(path = "status/{botID}")
+    public ResponseEntity<ChatBotStatusResponseDto> getBotStatus(@PathVariable String botID){
+        ChatBotStatus chatBotStatus = chatBotService.getStatus(botID);
+        return ResponseEntity.ok(ChatBotControllerMapper.getInstance.mapStatusToResponse(chatBotStatus));
+    }
 
     @GetMapping(path = "/list")
     public ResponseEntity<List<ChatBotResponseDto>> getAll(@RequestParam(required = false) Boolean enabled){
@@ -59,7 +67,11 @@ public class BotController {
         chatBotService.start(botID);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-
+    @PostMapping(path = "/stop/{botID}")
+    public ResponseEntity<Void> stop(@PathVariable String botID){
+        chatBotService.stop(botID);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 
 
 }

@@ -6,15 +6,13 @@ package io.projectZ.orchestrator.ai.DBRepository;
 */
 
 import io.projectZ.orchestrator.ai.DBRepository.mapper.PromptMapper;
-import io.projectZ.orchestrator.ai.model.PromptType;
-import io.projectZ.orchestrator.persistence.dao.JpaPromptRepository;
-import io.projectZ.orchestrator.persistence.entity.PromptEntity;
+import io.projectZ.orchestrator.persistence.relational.dao.JpaPromptRepository;
+import io.projectZ.orchestrator.persistence.relational.entity.PromptEntity;
 import io.projectZ.orchestrator.ai.model.PromptModel;
-import io.projectZ.orchestrator.persistence.entity.PromptTypeEnum;
+import io.projectZ.orchestrator.persistence.relational.entity.PromptTypeEnum;
 import io.projectZ.orchestrator.ai.prompt.repo.PromptPersistencePort;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

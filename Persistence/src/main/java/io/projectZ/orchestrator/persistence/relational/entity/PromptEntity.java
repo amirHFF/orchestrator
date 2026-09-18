@@ -1,4 +1,4 @@
-package io.projectZ.orchestrator.persistence.entity;
+package io.projectZ.orchestrator.persistence.relational.entity;
 /*
   Project : Orchestrator
   Author  : AmirHFF

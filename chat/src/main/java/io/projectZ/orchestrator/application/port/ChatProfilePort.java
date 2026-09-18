@@ -6,7 +6,6 @@ package io.projectZ.orchestrator.application.port;
 */
 
 import io.projectZ.orchestrator.entity.ChatProfile;
-import io.projectZ.orchestrator.persistence.entity.ChatProfileEntity;
 
 import java.util.List;
 

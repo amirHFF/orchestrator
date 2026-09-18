@@ -5,11 +5,8 @@ package io.projectZ.orchestrator.infrastructure.adapter.out.persistence.mapper;
   Created : 7/24/2026 - 6:07 PM
 */
 
-import io.projectZ.orchestrator.application.port.ChatProfilePort;
-import io.projectZ.orchestrator.entity.ChatBot;
 import io.projectZ.orchestrator.entity.ChatProfile;
-import io.projectZ.orchestrator.persistence.entity.ChatBotEntity;
-import io.projectZ.orchestrator.persistence.entity.ChatProfileEntity;
+import io.projectZ.orchestrator.persistence.relational.entity.ChatProfileEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;

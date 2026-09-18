@@ -25,5 +25,6 @@ public class ChatBot {
     private boolean enabled = false;
     private String description;
     private String scope;
+
 }
 

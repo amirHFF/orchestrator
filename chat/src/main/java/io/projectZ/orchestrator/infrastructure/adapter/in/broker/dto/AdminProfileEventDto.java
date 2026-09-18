@@ -7,7 +7,7 @@ package io.projectZ.orchestrator.infrastructure.adapter.in.broker.dto;
 
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import io.projectZ.orchestrator.infrastructure.adapter.in.broker.userEvent.StringifiedJsonDeserializer;
+import io.projectZ.orchestrator.infrastructure.adapter.in.broker.kafka.StringifiedJsonDeserializer;
 import io.projectZ.orchestrator.userManagement.dto.UserRepresentation;
 import lombok.Getter;
 import lombok.Setter;

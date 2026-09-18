@@ -1,7 +1,7 @@
 package io.projectZ.orchestrator.ai.DBRepository.mapper;
 
 import io.projectZ.orchestrator.ai.model.AIModel;
-import io.projectZ.orchestrator.persistence.entity.AIModelEntity;
+import io.projectZ.orchestrator.persistence.relational.entity.AIModelEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

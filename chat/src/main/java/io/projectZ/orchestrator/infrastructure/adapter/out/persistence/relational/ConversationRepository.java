@@ -10,20 +10,17 @@ import io.projectZ.orchestrator.application.port.ConversationPort;
 import io.projectZ.orchestrator.entity.Conversation;
 import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.mapper.ConversationMapper;
 import io.projectZ.orchestrator.infrastructure.config.advice.ChatErrorCode;
-import io.projectZ.orchestrator.persistence.dao.JpaChatProfileRepository;
-import io.projectZ.orchestrator.persistence.dao.JpaConversationRepository;
-import io.projectZ.orchestrator.persistence.entity.ChatProfileEntity;
-import io.projectZ.orchestrator.persistence.entity.ConversationEntity;
+import io.projectZ.orchestrator.persistence.relational.dao.JpaChatProfileRepository;
+import io.projectZ.orchestrator.persistence.relational.dao.JpaConversationRepository;
+import io.projectZ.orchestrator.persistence.relational.entity.ChatProfileEntity;
+import io.projectZ.orchestrator.persistence.relational.entity.ConversationEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Repository
