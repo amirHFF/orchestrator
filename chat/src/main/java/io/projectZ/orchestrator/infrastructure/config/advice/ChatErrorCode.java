@@ -7,7 +7,8 @@ import io.github.amirHFF.errorCode.ErrorCodeBuilder;
 
 	DUPLICATE_CONVERSATION("conversation is existed before" , ErrorCodeBuilder.build("4001")),
 	USER_NAME_NOT_FOUND("username not found" , ErrorCodeBuilder.build("2001")),
-	USER_NAME_IS_MANDATORY("username is mandatory field" , ErrorCodeBuilder.build("3001"));
+	USER_NAME_IS_MANDATORY("username is mandatory field" , ErrorCodeBuilder.build("3001")),
+	BOT_DOES_NOT_FOUND("chat bot does not found" , ErrorCodeBuilder.build("2002"));
 	;
 
 	private String message;

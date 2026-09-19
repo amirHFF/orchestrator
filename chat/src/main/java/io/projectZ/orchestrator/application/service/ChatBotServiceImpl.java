@@ -5,6 +5,7 @@ package io.projectZ.orchestrator.application.service;
   Created : 7/24/2026 - 11:57 AM
 */
 
+import io.github.amirHFF.exceptions.NotFoundException;
 import io.projectZ.orchestrator.application.port.ChatBotPersistencePort;
 import io.projectZ.orchestrator.application.port.UserManagementPort;
 import io.projectZ.orchestrator.application.service.internalProcess.BotIDGenerator.BotIdentifierGenerator;
@@ -16,6 +17,7 @@ import io.projectZ.orchestrator.infrastructure.adapter.out.keycloak.KeycloakToke
 import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.noRelational.ChatBotCacheDTO;
 import io.projectZ.orchestrator.infrastructure.adapter.out.persistence.noRelational.ChatBotCacheGateway;
 import io.projectZ.orchestrator.infrastructure.config.XmppConnection;
+import io.projectZ.orchestrator.infrastructure.config.advice.ChatErrorCode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jivesoftware.smack.AbstractXMPPConnection;
@@ -65,8 +67,10 @@ public class ChatBotServiceImpl implements ChatBotService {
             chatBotStatus.setEstablished(cacheDTO.isEstablished());
             chatBotStatus.setBotId(cacheDTO.getBotId());
             chatBotStatus.setHasListener(cacheDTO.isHasListener());
+            return chatBotStatus;
+        } else {
+            throw new NotFoundException(ChatErrorCode.BOT_DOES_NOT_FOUND);
         }
-        return chatBotStatus;
     }
 
     @Override
