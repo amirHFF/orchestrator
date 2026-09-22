@@ -28,7 +28,7 @@ public class ChatBotStatusRedisRepository {
 
     private static final String KEY_PREFIX = "zchat:presence:";
     private final Logger logger = LogManager.getLogger();
-    private static final Duration TTL = Duration.ofSeconds(36000);
+    private static final Duration TTL = Duration.ofSeconds(3600000);
     private final StringRedisTemplate redisTemplate;
     private final ObjectMapper objectMapper = ObjectMapperFactory.create();
 
